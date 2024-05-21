@@ -6,6 +6,7 @@ import {SalesModule} from '@modules/sales/sales.module'
 import {InventoryModule} from '@modules/inventory/inventory.module'
 import {CatalogModule} from '@modules/catalog/catalog.module'
 import {ProductManagementModule} from '@modules/product-management/product-management.module'
+import {CustomizationModule} from '@modules/userPreferences/customization.module'
 
 @Module({
   providers: [FiltersModule],
@@ -16,6 +17,7 @@ import {ProductManagementModule} from '@modules/product-management/product-manag
     SalesModule,
     CatalogModule,
     ProductManagementModule,
+    CustomizationModule,
   ],
 })
 export class AppModule {}

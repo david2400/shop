@@ -30,6 +30,8 @@ export class ComboProductService {
     }
     newProductCombo.Combo = combo
 
+    this.comboProductRepository.merge(newProductCombo, productCombo)
+
     const results = await this.comboProductRepository.save(newProductCombo)
 
     return results
@@ -86,9 +88,12 @@ export class ComboProductService {
     return result
   }
 
-  async update(id: number, product: UpdateComboProductDto): Promise<UpdateResult> {
-    const newProduct = this.comboProductRepository.create(product)
-    const result = await this.comboProductRepository.update({id: id}, newProduct)
+  async update(id: number, productCombo: UpdateComboProductDto): Promise<UpdateResult> {
+    const newProductCombo = this.comboProductRepository.create(productCombo)
+
+    this.comboProductRepository.merge(newProductCombo, productCombo)
+
+    const result = await this.comboProductRepository.update({id: id}, newProductCombo)
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be modify!'},

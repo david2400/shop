@@ -17,6 +17,8 @@ export class CategoryService {
     }
     const newCategory = this.categoryRepository.create(category)
 
+    this.categoryRepository.merge(newCategory, category)
+
     const results = await this.categoryRepository.save(newCategory)
 
     return results
@@ -46,6 +48,8 @@ export class CategoryService {
 
   async update(id: number, category: UpdateCategoryDto): Promise<UpdateResult> {
     const newCategory = this.categoryRepository.create(category)
+
+    this.categoryRepository.merge(newCategory, category)
 
     const result = await this.categoryRepository.update({Id: id}, newCategory)
     if (result.affected === 0) {

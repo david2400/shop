@@ -17,7 +17,7 @@ export class ProductFeature extends BaseEntity {
 
   @Column({
     type: 'varchar',
-    nullable: false,
+    nullable: true,
   })
   ExtraData: string
 
@@ -39,6 +39,7 @@ export class ProductFeature extends BaseEntity {
   @ManyToOne(() => Feature, (feature) => feature.ProductFeature, {
     cascade: true,
     lazy: true,
+    eager: true,
   })
   @JoinColumn([{name: 'FeatureId', referencedColumnName: 'Id'}])
   Feature: Feature

@@ -32,6 +32,7 @@ export class UnitProductService {
       }
       newUnitProduct.SmallerUnit = SmallerUnitId
     }
+    this.unitRepository.merge(newUnitProduct, unitProduct)
 
     const results = await this.unitRepository.save(newUnitProduct)
 

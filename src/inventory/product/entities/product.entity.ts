@@ -104,26 +104,22 @@ export class Product extends BaseEntity {
   Supplier: Supplier
 
   @OneToMany(() => ProductOrder, (productOrder) => productOrder.Product, {
-    eager: true,
     lazy: true,
   })
   ProductOrder: ProductOrder[]
 
   @OneToMany(() => FavoriteProduct, (favorite) => favorite.Product, {
-    eager: true,
     lazy: true,
   })
   FavoriteProduct: FavoriteProduct[]
 
   @OneToMany(() => ComboProduct, (productcombo) => productcombo.Product, {
     lazy: true,
-    eager: true,
   })
   ComboProduct: ComboProduct[]
 
   @OneToMany(() => ProductFeature, (productFeature) => productFeature.Feature, {
     lazy: true,
-    eager: true,
   })
   ProductFeature: ProductFeature[]
 }

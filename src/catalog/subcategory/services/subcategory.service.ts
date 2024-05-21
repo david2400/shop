@@ -26,6 +26,8 @@ export class SubcategoryService {
     }
     newSubcategory.Category = category
 
+    this.subcategoryRepository.merge(newSubcategory, subcategory)
+
     const results = await this.subcategoryRepository.save(newSubcategory)
 
     return results

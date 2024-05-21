@@ -8,6 +8,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Query,
   ValidationPipe,
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
@@ -32,7 +33,7 @@ export class FavoriteProductController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  async addFavorite(@Body(new ValidationPipe()) favoriteProduct: CreateFavoriteProductDto) {
+  async createFavorite(@Body(new ValidationPipe()) favoriteProduct: CreateFavoriteProductDto) {
     const result = await this.favoriteProductService.createFavorite(favoriteProduct)
 
     return result
@@ -91,9 +92,12 @@ export class FavoriteProductController {
   //   @UseGuards(JwtAuthGuard, RolesGuard)
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
   @HttpCode(HttpStatus.OK)
-  @Get('find/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    const result = await this.favoriteProductService.findOne(id)
+  @Get('find')
+  async findOne(
+    @Query('idClient', ParseIntPipe) idClient: number,
+    @Query('idProduct', ParseIntPipe) idProduct: number
+  ) {
+    const result = await this.favoriteProductService.findOne({idClient, idProduct})
 
     return result
   }

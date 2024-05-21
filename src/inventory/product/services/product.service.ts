@@ -42,6 +42,8 @@ export class ProductService {
     }
     newProduct.Supplier = supplier
 
+    this.productRepository.merge(newProduct, product)
+
     const results = await this.productRepository.save(newProduct)
 
     return results

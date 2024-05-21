@@ -14,7 +14,6 @@ export class Brand extends BaseEntity {
   Name: string
 
   @OneToMany(() => Product, (product) => product.Brand, {
-    eager: true,
     lazy: true,
   })
   Product: Product[]

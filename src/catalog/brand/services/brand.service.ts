@@ -17,6 +17,8 @@ export class BrandService {
     }
     const newBrand = this.brandRepository.create(brand)
 
+    this.brandRepository.merge(newBrand, brand)
+
     const results = await this.brandRepository.save(newBrand)
 
     return results
@@ -44,6 +46,9 @@ export class BrandService {
 
   async update(id: number, brand: UpdateBrandDto): Promise<UpdateResult> {
     const newBrand = this.brandRepository.create(brand)
+
+    this.brandRepository.merge(newBrand, brand)
+
     const result = await this.brandRepository.update({Id: id}, newBrand)
     if (result.affected === 0) {
       throw new HttpException(

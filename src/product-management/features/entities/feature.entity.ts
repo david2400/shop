@@ -19,7 +19,6 @@ export class Feature extends BaseEntity {
 
   @OneToMany(() => ProductFeature, (productFeature) => productFeature.Feature, {
     lazy: true,
-    eager: true,
   })
   ProductFeature: ProductFeature[]
 }

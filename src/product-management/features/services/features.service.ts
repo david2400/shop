@@ -4,8 +4,7 @@ import {Feature} from '@modules/product-management/features/entities/feature.ent
 import {CreateFeatureDto} from '@modules/product-management/features/dto/create-feature.dto'
 import {UpdateFeatureDto} from '@modules/product-management/features/dto/update-feature.dto'
 import {FeaturesRepository} from '@modules/product-management/features/repository/features.repository'
-import {UnitProductService} from '../../unit-product/services/unit-product.service'
-// import {ProductFeaturesRepository} from '../../product-features/repository/product-features.repository'
+import {UnitProductService} from '@modules/product-management/unit-product/services/unit-product.service'
 
 @Injectable()
 export class FeaturesService {
@@ -19,15 +18,17 @@ export class FeaturesService {
     if (result.length != 0) {
       throw new HttpException({message: 'feature already registered exist!'}, HttpStatus.FOUND)
     }
-    const newfeature = this.featureRepository.create(feature)
+    const newFeature = this.featureRepository.create(feature)
 
     const roles = await this.unitProductService.findByIds(feature.FeatureUnit)
     if (roles.length == 0 || roles.length < feature.FeatureUnit.length) {
       throw new HttpException({message: 'The roles are not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newfeature.FeatureUnit = roles
+    newFeature.FeatureUnit = roles
 
-    const results = await this.featureRepository.save(newfeature)
+    this.featureRepository.merge(newFeature, feature)
+
+    const results = await this.featureRepository.save(newFeature)
 
     return results
   }

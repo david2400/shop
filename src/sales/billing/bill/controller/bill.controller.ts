@@ -8,20 +8,19 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  ParseIntPipe,
   ValidationPipe,
-  Query,
+  ParseIntPipe,
 } from '@nestjs/common'
-import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
+import {ApiOperation, ApiResponse} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {CreateProductFeatureDto} from '@modules/product-management/product-features/dto/create-product-feature.dto'
-import {UpdateProductFeatureDto} from '@modules/product-management/product-features/dto/update-product-feature.dto'
-import {ProductFeaturesService} from '@modules/product-management/product-features/services/product-features.service'
+import {Bill} from '@modules/sales/billing/bill/entities/bill.entity'
+import {CreateBillDto} from '@modules/sales/billing/bill/dto/create-bill.dto'
+import {UpdateBillDto} from '@modules/sales/billing/bill/dto/update-bill.dto'
+import {BillService} from '@modules/sales/billing/bill/services/bill.service'
 
-@ApiTags('productFeatures')
-@Controller('productFeatures')
-export class ProductFeaturesController {
-  constructor(private readonly productFeaturesService: ProductFeaturesService) {}
+@Controller('bill')
+export class BillController {
+  constructor(private readonly billService: BillService) {}
 
   @ApiOperation({summary: 'crear marca'})
   @ApiResponse({
@@ -31,34 +30,12 @@ export class ProductFeaturesController {
   @ApiResponse({
     status: 201,
     description: 'success register',
-    type: CreateProductFeatureDto,
+    type: CreateBillDto,
   })
   @HttpCode(HttpStatus.CREATED)
   @Post()
-  async createFeature(@Body(new ValidationPipe()) subcategory: CreateProductFeatureDto) {
-    const result = await this.productFeaturesService.create(subcategory)
-
-    return result
-  }
-
-  @ApiOperation({summary: 'crear marca'})
-  @ApiResponse({
-    status: 500,
-    description: 'server error',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'success register',
-  })
-  //   @UseGuards(JwtAuthGuard, RolesGuard)
-  //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
-  @HttpCode(HttpStatus.OK)
-  @Get('comparate')
-  async compareProducts(
-    @Query('idProduct', ParseIntPipe) idProduct: number,
-    @Query('idProductToCompare', ParseIntPipe) idProductToCompare: number
-  ) {
-    const result = await this.productFeaturesService.compare(idProduct, idProductToCompare)
+  async createSupplier(@Body(new ValidationPipe()) bill: CreateBillDto) {
+    const result = await this.billService.create(bill)
 
     return result
   }
@@ -77,11 +54,11 @@ export class ProductFeaturesController {
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
   @HttpCode(HttpStatus.OK)
   @Patch(':id')
-  async updateFeature(
+  async updateSupplier(
     @Param('id', ParseIntPipe) id: number,
-    @Body(new ValidationPipe()) subcategory: UpdateProductFeatureDto
+    @Body(new ValidationPipe()) bill: UpdateBillDto
   ) {
-    const result = await this.productFeaturesService.update(id, subcategory)
+    const result = await this.billService.update(id, bill)
 
     return result
   }
@@ -101,7 +78,7 @@ export class ProductFeaturesController {
   @HttpCode(HttpStatus.OK)
   @Delete(':id')
   async delete(@Param('id', ParseIntPipe) id: number) {
-    const result = await this.productFeaturesService.delete(id)
+    const result = await this.billService.delete(id)
 
     return result
   }
@@ -114,14 +91,14 @@ export class ProductFeaturesController {
   @ApiResponse({
     status: 200,
     description: 'success register',
-    type: UpdateProductFeatureDto,
+    type: UpdateBillDto,
   })
   //   @UseGuards(JwtAuthGuard, RolesGuard)
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
   @HttpCode(HttpStatus.OK)
   @Get('restore/:id')
-  async restoreFeature(@Param('id', ParseIntPipe) id: number) {
-    const result = await this.productFeaturesService.restore(id)
+  async restore(@Param('id', ParseIntPipe) id: number) {
+    const result = await this.billService.restore(id)
 
     return result
   }
@@ -134,15 +111,14 @@ export class ProductFeaturesController {
   @ApiResponse({
     status: 200,
     description: 'success register',
-    type: UpdateProductFeatureDto,
+    type: [Bill],
   })
   //   @UseGuards(JwtAuthGuard, RolesGuard)
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
   @HttpCode(HttpStatus.OK)
   @Get()
   async findAll() {
-    const result = await this.productFeaturesService.findAll()
-
+    const result = await this.billService.findAll()
     return result
   }
 
@@ -154,14 +130,14 @@ export class ProductFeaturesController {
   @ApiResponse({
     status: 200,
     description: 'success register',
-    type: UpdateProductFeatureDto,
+    type: Bill,
   })
   //   @UseGuards(JwtAuthGuard, RolesGuard)
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
   @HttpCode(HttpStatus.OK)
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
-    const result = await this.productFeaturesService.findOne(id)
+    const result = await this.billService.findOne(id)
 
     return result
   }

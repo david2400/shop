@@ -37,6 +37,8 @@ export class FavoriteProductService {
       }
       newFavorite.Product = product
 
+      this.favoriteRepository.merge(newFavorite, favorite)
+
       const result = await this.favoriteRepository.save(newFavorite)
 
       return result
@@ -70,8 +72,8 @@ export class FavoriteProductService {
   async findOne(body: any): Promise<FavoriteProduct> {
     const result = await this.favoriteRepository.findOne({
       where: {
-        Client: {Id: body.ClientId},
-        Product: {Id: body.ProductId},
+        Client: {Id: body.idClient},
+        Product: {Id: body.idProduct},
       },
       withDeleted: true,
     })

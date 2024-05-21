@@ -1,9 +1,9 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common'
 import {UpdateResult} from 'typeorm'
-import {SupplierRepository} from '@modules/inventory/supplier/repository/supplier.repository'
+import {Supplier} from '@modules/inventory/supplier/entities/supplier.entity'
 import {CreateSupplierDto} from '@modules/inventory/supplier/dto/create-supplier.dto'
 import {UpdateSupplierDto} from '@modules/inventory/supplier/dto/update-supplier.dto'
-import {Supplier} from '@modules/inventory/supplier/entities/supplier.entity'
+import {SupplierRepository} from '@modules/inventory/supplier/repository/supplier.repository'
 
 @Injectable()
 export class SupplierService {
@@ -15,6 +15,8 @@ export class SupplierService {
       throw new HttpException({message: 'The supplier already registered!'}, HttpStatus.FOUND)
     }
     const newSupplier = this.supplierRepository.create(supplier)
+
+    this.supplierRepository.merge(newSupplier, supplier)
 
     const result = await this.supplierRepository.save(newSupplier)
 
@@ -45,6 +47,8 @@ export class SupplierService {
 
   async update(id: number, supplier: UpdateSupplierDto): Promise<UpdateResult> {
     const newSupplier = this.supplierRepository.create(supplier)
+
+    this.supplierRepository.merge(newSupplier, supplier)
 
     const result = await this.supplierRepository.update(id, newSupplier)
     if (result.affected === 0) {

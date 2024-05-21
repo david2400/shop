@@ -9,7 +9,6 @@ async function bootstrap() {
     snapshot: true,
   })
 
-  // app.useGlobalFilters(new HttpExceptionFilter())
   const configService = app.get(ConfigService)
   const globalPrefix = configService.get('URL_PREFIX')
   const port = configService.get('PORT')

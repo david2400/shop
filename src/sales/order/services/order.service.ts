@@ -11,6 +11,9 @@ export class OrderService {
 
   async createOrder(order: CreateOrderDto): Promise<any> {
     const newOrder = this.orderRepository.create(order)
+
+    this.orderRepository.merge(newOrder, order)
+
     const result = await this.orderRepository.save(newOrder)
 
     return result
@@ -31,6 +34,9 @@ export class OrderService {
 
   async update(id: number, order: UpdateOrderDto): Promise<UpdateResult> {
     const newOrder = this.orderRepository.create(order)
+
+    this.orderRepository.merge(newOrder, order)
+
     const result = await this.orderRepository.update({id: id}, newOrder)
     if (result.affected === 0) {
       throw new HttpException(

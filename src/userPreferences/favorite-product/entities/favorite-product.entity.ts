@@ -17,7 +17,6 @@ export class FavoriteProduct extends BaseEntity {
 
   @ManyToOne(() => Client, (client) => client.FavoriteProduct, {
     cascade: true,
-    eager: true,
     lazy: true,
   })
   @JoinColumn([{name: 'ClientId', referencedColumnName: 'Id'}])

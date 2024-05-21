@@ -30,6 +30,8 @@ export class ProductOrderService {
     }
     newProdOrder.Product = product
 
+    this.productOrderRepository.merge(newProdOrder, productOrder)
+
     const result = await this.productOrderRepository.save(newProdOrder)
     return result
   }

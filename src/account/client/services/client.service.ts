@@ -20,11 +20,7 @@ export class ClientService {
     }
     const newClient = this.clientRepository.create(client)
 
-    // const profile = await this.profileService.findOne(client.ProfileId)
-    // if (!profile) {
-    //   throw new HttpException({message: 'The profile does not exist!'}, HttpStatus.NOT_FOUND)
-    // }
-    // newClient.Profile = profile
+    this.clientRepository.merge(newClient, client)
 
     const results = await this.clientRepository.save(newClient)
     // const sendEmail = await this.sendEmail()
