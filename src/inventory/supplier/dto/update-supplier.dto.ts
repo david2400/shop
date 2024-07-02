@@ -7,5 +7,5 @@ export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

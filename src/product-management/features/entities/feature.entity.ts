@@ -5,20 +5,20 @@ import {ProductFeature} from '@modules/product-management/product-features/entit
 
 @Entity('Features')
 export class Feature extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Name: string
+  name: string
 
-  @ManyToMany(() => UnitProduct, (unit) => unit.UnitFeature, {lazy: true, eager: true})
-  FeatureUnit: UnitProduct[]
+  @ManyToMany(() => UnitProduct, (unit) => unit.unit_feature, {lazy: true, eager: true})
+  feature_unit: UnitProduct[]
 
-  @OneToMany(() => ProductFeature, (productFeature) => productFeature.Feature, {
+  @OneToMany(() => ProductFeature, (productFeature) => productFeature.feature, {
     lazy: true,
   })
-  ProductFeature: ProductFeature[]
+  product_feature: ProductFeature[]
 }

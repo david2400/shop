@@ -3,32 +3,32 @@ import {BaseEntity} from '@common/class/entities/base.abstract.entities'
 import {Category} from '@modules/catalog/category/entities/category.entity'
 import {Product} from '@modules/inventory/product/entities/product.entity'
 
-@Entity('Subcategory')
+@Entity('subcategory')
 export class Subcategory extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Name: string
+  name: string
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  Slug: string
+  slug: string
 
-  @ManyToOne(() => Category, (category) => category.Subcategory, {
+  @ManyToOne(() => Category, (category) => category.subcategory, {
     cascade: true,
     lazy: true,
   })
-  @JoinColumn([{name: 'CategoryId', referencedColumnName: 'Id'}])
-  Category: Category
+  @JoinColumn([{name: 'category_id', referencedColumnName: 'id'}])
+  category: Category
 
-  @OneToMany(() => Product, (product) => product.Subcategory, {
+  @OneToMany(() => Product, (product) => product.subcategory, {
     lazy: true,
   })
-  Product: Product[]
+  product: Product[]
 }

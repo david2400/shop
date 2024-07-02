@@ -6,5 +6,5 @@ export class UpdateProductFeatureDto extends PartialType(CreateProductFeatureDto
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

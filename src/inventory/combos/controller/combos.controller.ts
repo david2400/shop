@@ -20,10 +20,14 @@ import {CombosService} from '@modules/inventory/combos/services/combos.service'
 export class CombosController {
   constructor(private readonly combosService: CombosService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear un combo de productos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -36,10 +40,14 @@ export class CombosController {
     return this.combosService.create(createProductComboDto)
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todos los combo de productos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -54,7 +62,7 @@ export class CombosController {
     return this.combosService.findAll()
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar un combo de productos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -72,10 +80,14 @@ export class CombosController {
     return this.combosService.findOne(+id)
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar un combo de productos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -93,7 +105,7 @@ export class CombosController {
     return this.combosService.update(+id, updateProductComboDto)
   }
 
-  // @ApiOperation({summary: 'crear marca'})
+  // @ApiOperation({summary: 'crear un combo de productos'})
   // @ApiResponse({
   //   status: 500,
   //   description: 'server error',

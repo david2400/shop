@@ -2,10 +2,10 @@ import {HttpException, HttpStatus, Injectable} from '@nestjs/common'
 import {UpdateResult} from 'typeorm'
 import {ClientService} from '@modules/account/client/services/client.service'
 import {ProductService} from '@modules/inventory/product/services/product.service'
-import {FavoriteProduct} from '@modules/favorite-product/entities/favorite-product.entity'
-import {CreateFavoriteProductDto} from '@modules/favorite-product/dto/create-favorite-product.dto'
-import {UpdateFavoriteProductDto} from '@modules/favorite-product/dto/update-favorite-product.dto'
-import {FavoriteProductRepository} from '@modules/favorite-product/repository/favorite-product.repository'
+import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
+import {CreateFavoriteProductDto} from '@modules/userPreferences/favorite-product/dto/create-favorite-product.dto'
+import {UpdateFavoriteProductDto} from '@modules/userPreferences/favorite-product/dto/update-favorite-product.dto'
+import {FavoriteProductRepository} from '@modules/userPreferences/favorite-product/repository/favorite-product.repository'
 
 @Injectable()
 export class FavoriteProductService {
@@ -19,23 +19,23 @@ export class FavoriteProductService {
     const results = await this.findOne(favorite)
 
     if (results) {
-      const result = await this.restore(results.Id)
+      const result = await this.restore(results.id)
 
       return result
     } else {
       const newFavorite = this.favoriteRepository.create(favorite)
 
-      const client = await this.clientService.findOne(favorite.ClientId)
+      const client = await this.clientService.findOne(favorite.client_id)
       if (!client) {
         throw new HttpException({message: 'The client does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newFavorite.Client = client
+      newFavorite.client = client
 
-      const product = await this.productService.findOne(favorite.ProductId)
+      const product = await this.productService.findOne(favorite.product_id)
       if (!product) {
         throw new HttpException({message: 'The product does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newFavorite.Product = product
+      newFavorite.product = product
 
       this.favoriteRepository.merge(newFavorite, favorite)
 
@@ -46,7 +46,7 @@ export class FavoriteProductService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.favoriteRepository.softDelete({Id: id})
+    const result = await this.favoriteRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The product does not exist or could not be restored!'},
@@ -57,7 +57,7 @@ export class FavoriteProductService {
   }
 
   async restore(id: number) {
-    const result = await this.favoriteRepository.recover({Id: id})
+    const result = await this.favoriteRepository.recover({id: id})
 
     if (result.DeleteAt === undefined) {
       throw new HttpException(
@@ -72,8 +72,8 @@ export class FavoriteProductService {
   async findOne(body: any): Promise<FavoriteProduct> {
     const result = await this.favoriteRepository.findOne({
       where: {
-        Client: {Id: body.idClient},
-        Product: {Id: body.idProduct},
+        client: {id: body.idClient},
+        product: {id: body.idProduct},
       },
       withDeleted: true,
     })
@@ -83,7 +83,7 @@ export class FavoriteProductService {
   async findAllFavoriteClient(idClient: number): Promise<FavoriteProduct[]> {
     const result = await this.favoriteRepository.find({
       where: {
-        Client: {Id: idClient},
+        client: {id: idClient},
       },
     })
     return result

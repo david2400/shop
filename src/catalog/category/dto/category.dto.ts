@@ -9,5 +9,5 @@ export class CategoryDto extends PartialType(UpdateCategoryDto) {
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  Subcategory: SubcategoryDto[]
+  subcategory: SubcategoryDto[]
 }

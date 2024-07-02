@@ -6,15 +6,15 @@ export class CreateComboProductDto extends BaseDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  Quantity: number
+  quantity: number
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  ComboId: number
+  combo_id: number
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  ProductId: number
+  product_id: number
 }

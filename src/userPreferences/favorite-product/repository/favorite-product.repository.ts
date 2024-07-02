@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 import {BaseAbstractRepository} from '@common/repository/base.abstract.repository'
-import {FavoriteProduct} from '@modules/favorite-product/entities/favorite-product.entity'
+import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
 
 @Injectable()
 export class FavoriteProductRepository extends BaseAbstractRepository<FavoriteProduct> {

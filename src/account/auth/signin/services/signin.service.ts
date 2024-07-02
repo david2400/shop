@@ -54,7 +54,7 @@ export class SigninService {
 
   async generateTokenJWT(client: any) {
     const payload: JwtPayload = {
-      sub: client.Id,
+      sub: client.id,
       username: client.username,
       roles: client.user_role,
     }
@@ -66,21 +66,21 @@ export class SigninService {
   }
 
   async login(loginUserDto: CreateSigninDto): Promise<any> {
-    const client = await this.clientServices.findOneByUsername(loginUserDto.Username)
+    const client = await this.clientServices.findOneByUsername(loginUserDto.username)
     if (!client) {
       throw new HttpException({message: 'User not found'}, HttpStatus.NOT_FOUND)
     }
-    const isMatchPassword = await this.comparePasswords(loginUserDto.Password, client.Password)
+    const isMatchPassword = await this.comparePasswords(loginUserDto.password, client.password)
 
     if (!client || !isMatchPassword) {
       throw new HttpException({message: 'password is not match'}, HttpStatus.NOT_FOUND)
     }
     const token = await this.generateTokenJWT(client)
 
-    await this.clientServices.updateUserRefreshToken(client.Id, token.refresh_token)
+    await this.clientServices.updateUserRefreshToken(client.id, token.refresh_token)
 
     const resObj = {
-      id: client.Id,
+      id: client.id,
       role: client,
       token: token,
     }

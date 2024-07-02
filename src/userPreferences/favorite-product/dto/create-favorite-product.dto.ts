@@ -6,10 +6,10 @@ export class CreateFavoriteProductDto extends BaseDto {
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  ProductId: number
+  product_id: number
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  ClientId: number
+  client_id: number
 }

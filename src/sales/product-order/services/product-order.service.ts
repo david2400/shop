@@ -22,13 +22,13 @@ export class ProductOrderService {
     if (!order) {
       throw new HttpException({message: 'The order does not exist!'}, HttpStatus.FOUND)
     }
-    newProdOrder.Order = order
+    newProdOrder.order = order
 
-    const product = await this.productService.findOne(productOrder.ProductId)
+    const product = await this.productService.findOne(productOrder.product_id)
     if (!product) {
       throw new HttpException({message: 'The product does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProdOrder.Product = product
+    newProdOrder.product = product
 
     this.productOrderRepository.merge(newProdOrder, productOrder)
 
@@ -37,7 +37,7 @@ export class ProductOrderService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.productOrderRepository.softDelete({Id: id})
+    const result = await this.productOrderRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The product order does not exist or could not be deleted!'},
@@ -48,7 +48,7 @@ export class ProductOrderService {
   }
 
   async restore(id: number) {
-    const result = await this.productOrderRepository.recover({Id: id})
+    const result = await this.productOrderRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The product order does not exist or could not be restored!'},
@@ -68,20 +68,20 @@ export class ProductOrderService {
       )
     }
 
-    if (newProductOrder.Product.Id != productOrder.ProductId) {
-      const product = await this.productService.findOne(productOrder.ProductId)
+    if (newProductOrder.product.id != productOrder.product_id) {
+      const product = await this.productService.findOne(productOrder.product_id)
       if (!product) {
         throw new HttpException({message: 'The product does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductOrder.Product = product
+      newProductOrder.product = product
     }
 
-    if (newProductOrder.Order.Id != productOrder.OrderId) {
+    if (newProductOrder.order.id != productOrder.OrderId) {
       const order = await this.orderService.findOne(productOrder.OrderId)
       if (!order) {
         throw new HttpException({message: 'The order does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductOrder.Order = order
+      newProductOrder.order = order
     }
 
     this.productOrderRepository.merge(newProductOrder, productOrder)
@@ -93,7 +93,7 @@ export class ProductOrderService {
 
   async findOne(id: number): Promise<ProductOrder> {
     const result = await this.productOrderRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

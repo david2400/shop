@@ -22,10 +22,14 @@ import {FeaturesService} from '@modules/product-management/features/services/fea
 export class FeaturesController {
   constructor(private readonly featuresService: FeaturesService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear caracteristicas'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -40,10 +44,14 @@ export class FeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar caracteristicas'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -63,10 +71,14 @@ export class FeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar caracteristicas'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -83,7 +95,7 @@ export class FeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar caracteristicas'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -103,7 +115,7 @@ export class FeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todas las caracteristicas'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -123,7 +135,7 @@ export class FeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar una caracteristica'})
   @ApiResponse({
     status: 500,
     description: 'server error',

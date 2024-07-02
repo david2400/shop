@@ -6,5 +6,5 @@ export class CreateBrandDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Name: string
+  name: string
 }

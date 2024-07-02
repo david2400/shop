@@ -7,5 +7,5 @@ export class UpdateBillingElectricDto extends PartialType(CreateBillingElectricD
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

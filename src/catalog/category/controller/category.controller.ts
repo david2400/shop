@@ -22,10 +22,14 @@ import {UpdateCategoryDto} from '@modules/catalog/category/dto/update-category.d
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -40,10 +44,14 @@ export class CategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -63,10 +71,14 @@ export class CategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -83,7 +95,7 @@ export class CategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -103,7 +115,7 @@ export class CategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todas las categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -123,7 +135,7 @@ export class CategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar una categoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',

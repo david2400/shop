@@ -20,7 +20,7 @@ export class BillService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.billRepository.softDelete({Id: id})
+    const result = await this.billRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The bill does not exist or could not be deleted!'},
@@ -31,7 +31,7 @@ export class BillService {
   }
 
   async restore(id: number) {
-    const result = await this.billRepository.recover({Id: id})
+    const result = await this.billRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The bill does not exist or could not be restored!'},
@@ -59,7 +59,7 @@ export class BillService {
 
   async findOne(id: number): Promise<Bill> {
     const result = await this.billRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

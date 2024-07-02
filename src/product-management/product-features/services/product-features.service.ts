@@ -8,6 +8,10 @@ import {UpdateProductFeatureDto} from '@modules/product-management/product-featu
 import {ProductFeature} from '@modules/product-management/product-features/entities/product-feature.entity'
 import {ProductFeaturesRepository} from '@modules/product-management/product-features/repository/product-features.repository'
 
+interface IProductsFeature {
+  [key: string]: ProductFeature
+}
+
 @Injectable()
 export class ProductFeaturesService {
   constructor(
@@ -20,23 +24,23 @@ export class ProductFeaturesService {
   async create(productFeature: CreateProductFeatureDto): Promise<any> {
     const newProductFeature = this.productFeaturesRepository.create(productFeature)
 
-    const product = await this.productService.findOne(productFeature.ProductId)
+    const product = await this.productService.findOne(productFeature.product_id)
     if (!product) {
       throw new HttpException({message: 'The product are not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProductFeature.Product = product
+    newProductFeature.product = product
 
-    const feature = await this.featureService.findOne(productFeature.FeatureId)
+    const feature = await this.featureService.findOne(productFeature.feature_id)
     if (!feature) {
       throw new HttpException({message: 'The feature are not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProductFeature.Feature = feature
+    newProductFeature.feature = feature
 
-    const unitProduct = await this.unitProductService.findOne(productFeature.FeatureId)
+    const unitProduct = await this.unitProductService.findOne(productFeature.feature_id)
     if (!feature) {
       throw new HttpException({message: 'The feature are not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProductFeature.UnitProduct = unitProduct
+    newProductFeature.unit_product = unitProduct
 
     this.productFeaturesRepository.merge(newProductFeature, productFeature)
 
@@ -61,8 +65,9 @@ export class ProductFeaturesService {
 
     const featureProductsCompare = product.reduce((acc, products) => {
       const result = Promise.resolve(products.Feature).then((feature) => {
-        acc[feature.Id] = products
+        acc[feature.id] = products
       })
+
       return acc
     }, {})
 
@@ -70,7 +75,7 @@ export class ProductFeaturesService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.productFeaturesRepository.softDelete({Id: id})
+    const result = await this.productFeaturesRepository.softDelete({id: id})
 
     if (result.affected === 0) {
       throw new HttpException(
@@ -82,7 +87,7 @@ export class ProductFeaturesService {
   }
 
   async restore(id: number) {
-    const result = await this.productFeaturesRepository.recover({Id: id})
+    const result = await this.productFeaturesRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The productFeature does not exist or could not be restored!'},
@@ -101,28 +106,28 @@ export class ProductFeaturesService {
         HttpStatus.NOT_FOUND
       )
     }
-    if (newProductFeature.Product.Id != productFeature.ProductId) {
-      const product = await this.productService.findOne(productFeature.ProductId)
+    if (newProductFeature.product.id != productFeature.product_id) {
+      const product = await this.productService.findOne(productFeature.product_id)
       if (!product) {
         throw new HttpException({message: 'The product are not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductFeature.Product = product
+      newProductFeature.product = product
     }
 
-    if (newProductFeature.Feature.Id != productFeature.FeatureId) {
-      const feature = await this.featureService.findOne(productFeature.FeatureId)
+    if (newProductFeature.feature.id != productFeature.feature_id) {
+      const feature = await this.featureService.findOne(productFeature.feature_id)
       if (!feature) {
         throw new HttpException({message: 'The feature are not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductFeature.Feature = feature
+      newProductFeature.feature = feature
     }
 
-    if (newProductFeature.UnitProduct.Id != productFeature.UnitProductId) {
-      const unitProduct = await this.unitProductService.findOne(productFeature.UnitProductId)
+    if (newProductFeature.unit_product.id != productFeature.unit_product_id) {
+      const unitProduct = await this.unitProductService.findOne(productFeature.unit_product_id)
       if (!unitProduct) {
         throw new HttpException({message: 'The feature are not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductFeature.UnitProduct = unitProduct
+      newProductFeature.unit_product = unitProduct
     }
     this.productFeaturesRepository.merge(newProductFeature, productFeature)
 
@@ -133,14 +138,14 @@ export class ProductFeaturesService {
 
   async findOne(id: number): Promise<ProductFeature> {
     const result = await this.productFeaturesRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }
 
   async findByProduct(idProduct: number): Promise<ProductFeature[]> {
     const result = await this.productFeaturesRepository.find({
-      where: {Product: {Id: idProduct}},
+      where: {product: {id: idProduct}},
     })
     return result
   }

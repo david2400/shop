@@ -18,17 +18,17 @@ export class ComboProductService {
   async create(productCombo: CreateComboProductDto): Promise<any> {
     const newProductCombo = this.comboProductRepository.create(productCombo)
 
-    const product = await this.productService.findOne(productCombo.ProductId)
+    const product = await this.productService.findOne(productCombo.product_id)
     if (!product) {
-      throw new HttpException({message: 'The Product does not exist!'}, HttpStatus.NOT_FOUND)
+      throw new HttpException({message: 'The product does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProductCombo.Product = product
+    newProductCombo.product = product
 
-    const combo = await this.comboService.findOne(productCombo.ComboId)
+    const combo = await this.comboService.findOne(productCombo.combo_id)
     if (!combo) {
-      throw new HttpException({message: 'The Combo does not exist!'}, HttpStatus.NOT_FOUND)
+      throw new HttpException({message: 'The combo does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProductCombo.Combo = combo
+    newProductCombo.combo = combo
 
     this.comboProductRepository.merge(newProductCombo, productCombo)
 
@@ -43,17 +43,17 @@ export class ComboProductService {
     for (const comboProduct of productCombo) {
       const newProductCombo = this.comboProductRepository.create(comboProduct)
 
-      const product = await this.productService.findOne(comboProduct.ProductId)
+      const product = await this.productService.findOne(comboProduct.product_id)
       if (!product) {
-        throw new HttpException({message: 'The Product does not exist!'}, HttpStatus.NOT_FOUND)
+        throw new HttpException({message: 'The product does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductCombo.Product = product
+      newProductCombo.product = product
 
-      const combo = await this.comboService.findOne(comboProduct.ComboId)
+      const combo = await this.comboService.findOne(comboProduct.combo_id)
       if (!combo) {
-        throw new HttpException({message: 'The Combo does not exist!'}, HttpStatus.NOT_FOUND)
+        throw new HttpException({message: 'The combo does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProductCombo.Combo = combo
+      newProductCombo.combo = combo
 
       productsCombos.push(newProductCombo)
     }
@@ -67,7 +67,7 @@ export class ComboProductService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.comboProductRepository.softDelete({Id: id})
+    const result = await this.comboProductRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be deleted!'},
@@ -78,7 +78,7 @@ export class ComboProductService {
   }
 
   async restore(id: number) {
-    const result = await this.comboProductRepository.recover({Id: id})
+    const result = await this.comboProductRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be restored!'},
@@ -103,7 +103,7 @@ export class ComboProductService {
     return result
   }
 
-  // async findOneByName(product: any): Promise<Combo[]> {
+  // async findOneByName(product: any): Promise<combo[]> {
   //   const result = await this.comboProductRepository.find({
   //     where: {combo_product: {id: product.id}},
   //   })
@@ -112,7 +112,7 @@ export class ComboProductService {
 
   async findOne(id: number): Promise<ComboProduct> {
     const result = await this.comboProductRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

@@ -2,52 +2,52 @@ import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
 import {BaseEntity} from '@common/class/entities/base.abstract.entities'
 import {ComboProduct} from '@modules/inventory/combo-product/entities/combo-product.entity'
 
-@Entity('Combo')
+@Entity('combo')
 export class Combo extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Name: string
+  name: string
 
   @Column({
     type: 'varchar',
     length: 255,
     nullable: false,
   })
-  Description: string
+  description: string
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  ImageURL?: string
+  image_url?: string
 
   @Column({
     type: 'bit',
     nullable: false,
     default: true,
   })
-  Available: boolean
+  available: boolean
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  RealPrice: number
+  real_price: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Price: number
+  price: number
 
-  @OneToMany(() => ComboProduct, (comboProduct) => comboProduct.Combo, {
+  @OneToMany(() => ComboProduct, (comboProduct) => comboProduct.combo, {
     eager: true,
     lazy: true,
   })
-  ComboProduct: ComboProduct[]
+  combo_product: ComboProduct[]
 }

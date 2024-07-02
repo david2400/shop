@@ -28,9 +28,14 @@ export class BrandController {
   constructor(private readonly brandService: BrandService) {}
 
   @Public()
+  @ApiOperation({summary: 'Crear una marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -47,10 +52,14 @@ export class BrandController {
 
   //   @UseGuards(JwtAuthGuard, RolesGuard)
   //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -70,10 +79,14 @@ export class BrandController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar una marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -90,7 +103,7 @@ export class BrandController {
     return result
   }
 
-  @ApiOperation({summary: 'eliminar una marca'})
+  @ApiOperation({summary: 'Restaurar una marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -110,7 +123,7 @@ export class BrandController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todas los registros de marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -130,7 +143,7 @@ export class BrandController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar una marca'})
   @ApiResponse({
     status: 500,
     description: 'server error',

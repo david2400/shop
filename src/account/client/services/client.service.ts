@@ -14,7 +14,7 @@ export class ClientService {
 
   async createClient(client: CreateClientDto) {
     const result =
-      (await this.findOneByEmail(client.Email)) || (await this.findOneByUsername(client.Username))
+      (await this.findOneByEmail(client.email)) || (await this.findOneByUsername(client.username))
     if (result != null) {
       throw new HttpException({message: 'Client already registered'}, HttpStatus.NOT_FOUND)
     }
@@ -29,7 +29,7 @@ export class ClientService {
   }
 
   async delete(id: number) {
-    const result = await this.clientRepository.softDelete({Id: id})
+    const result = await this.clientRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'Client does not exist or could not be deleted!'},
@@ -44,14 +44,14 @@ export class ClientService {
       // relations: {
       //   Profile: true,
       // },
-      where: {Username: username},
+      where: {username: username},
     })
     return result
   }
 
   async findOneByEmail(email: string): Promise<any> {
     const result = await this.clientRepository.findOne({
-      where: {Email: email},
+      where: {email: email},
     })
 
     return result
@@ -59,7 +59,7 @@ export class ClientService {
 
   async findOne(id: number): Promise<Client> {
     const result = await this.clientRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }
@@ -71,15 +71,15 @@ export class ClientService {
 
   async getRefreshTokenOfUserId(clientId: number) {
     const result = await this.clientRepository.findOne({
-      select: {Id: true, Username: true, RefreshToken: true},
-      where: {Id: clientId},
+      select: {id: true, username: true, refresh_token: true},
+      where: {id: clientId},
     })
 
     return result
   }
 
   async restore(id: number) {
-    const result = await this.clientRepository.recover({Id: id})
+    const result = await this.clientRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'client does not exist or could not be restored!'},
@@ -91,9 +91,9 @@ export class ClientService {
 
   async removeRefreshToken(clientId: number): Promise<any> {
     const result = await this.clientRepository.update(
-      {Id: clientId},
+      {id: clientId},
       {
-        RefreshToken: null,
+        refresh_token: null,
       }
     )
     if (result.affected === 0) {
@@ -114,7 +114,7 @@ export class ClientService {
       )
     }
 
-    // if (newClient.Profile.Id != client.ProfileId) {
+    // if (newClient.Profile.id != client.ProfileId) {
     //   const profile = await this.profileService.findOne(client.ProfileId)
     //   if (!profile) {
     //     throw new HttpException({message: 'The profile does not exist!'}, HttpStatus.NOT_FOUND)
@@ -133,9 +133,9 @@ export class ClientService {
     const hashRefreshToken = refreshToken
 
     const result = await this.clientRepository.update(
-      {Id: clientId},
+      {id: clientId},
       {
-        RefreshToken: hashRefreshToken,
+        refresh_token: hashRefreshToken,
       }
     )
     if (result.affected === 0) {

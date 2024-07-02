@@ -21,11 +21,11 @@ export class CombosService {
     console.log(newProductCombo)
     let results = await this.comboRepository.save(newProductCombo)
     console.log(results)
-    const comboId = results.Id
+    const comboId = results.id
 
     // Asignar el ID del combo a cada objeto dentro de combo_product
     if (comboId) {
-      const comboProducts = productCombo.ComboProduct.map((cp) => {
+      const comboProducts = productCombo.combo_product.map((cp) => {
         return {...cp, comboId: comboId}
       })
       console.log(comboProducts)
@@ -36,7 +36,7 @@ export class CombosService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.comboRepository.softDelete({Id: id})
+    const result = await this.comboRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be deleted!'},
@@ -47,7 +47,7 @@ export class CombosService {
   }
 
   async restore(id: number) {
-    const result = await this.comboRepository.recover({Id: id})
+    const result = await this.comboRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be restored!'},
@@ -59,7 +59,7 @@ export class CombosService {
 
   async update(id: number, product: UpdateComboDto): Promise<UpdateResult> {
     const newProduct = this.comboRepository.create(product)
-    const result = await this.comboRepository.update({Id: id}, newProduct)
+    const result = await this.comboRepository.update({id: id}, newProduct)
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The combo does not exist or could not be modify!'},
@@ -69,7 +69,7 @@ export class CombosService {
     return result
   }
 
-  // async findOneByName(product: any): Promise<Combo[]> {
+  // async findOneByName(product: any): Promise<combo[]> {
   //   const result = await this.comboRepository.find({
   //     where: {combo_product: {id: product.id}},
   //   })
@@ -78,7 +78,7 @@ export class CombosService {
 
   async findOne(id: number): Promise<Combo> {
     const result = await this.comboRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

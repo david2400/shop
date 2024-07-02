@@ -7,5 +7,5 @@ export class UpdateClientDto extends PartialType(CreateClientDto) {
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

@@ -8,33 +8,33 @@ export class CreateComboDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Name: string
+  name: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Description: string
+  description: string
 
   @IsOptional()
   @IsString()
   @ApiProperty()
-  ImageURL?: string
+  image_url?: string
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty()
-  Available: boolean
+  available: boolean
 
   @IsNumber()
   @ApiProperty()
-  RealPrice: number
+  real_price: number
 
   @IsNumber()
   @ApiProperty()
-  Price: number
+  price: number
 
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  ComboProduct: DeepPartial<ComboProductDto[]>
+  combo_product: DeepPartial<ComboProductDto[]>
 }

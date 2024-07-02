@@ -5,13 +5,13 @@ import {BaseDto} from '@common/class/dto/base.abstract.dto'
 export class CreateOrderDto extends BaseDto {
   @IsNumberString()
   @ApiProperty()
-  ComplementaryOrder: string
+  complementary_order: string
 
   @IsNotEmpty()
   @ApiProperty()
-  State: string
+  state: string
 
   @IsDecimal()
   @ApiProperty()
-  Total: number
+  total: number
 }

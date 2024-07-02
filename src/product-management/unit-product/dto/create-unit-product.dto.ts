@@ -8,20 +8,20 @@ export class CreateUnitProductDto extends BaseDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  Name: string
+  name: string
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  GreaterUnitId: number
+  greater_unit_id: number
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  SmallerUnitId: number
+  smaller_unit_id: number
 
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  UnitFeature?: DeepPartial<FeatureDto[]>
+  unit_feature?: DeepPartial<FeatureDto[]>
 }

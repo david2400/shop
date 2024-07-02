@@ -22,10 +22,14 @@ import {UpdateProductDto} from '@modules/inventory/product/dto/update-product.dt
 export class ProductController {
   constructor(private productService: ProductService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -40,10 +44,14 @@ export class ProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -63,10 +71,14 @@ export class ProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -83,7 +95,7 @@ export class ProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -103,7 +115,7 @@ export class ProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todos los producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -123,7 +135,7 @@ export class ProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',

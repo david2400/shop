@@ -6,68 +6,68 @@ export class CreateProductDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Name: string
+  name: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Description: string
+  description: string
 
   @IsInt()
   @Min(1)
   @ApiProperty()
-  Stock: number
+  stock: number
 
   @IsNumber()
   @ApiProperty()
-  RealPrice: number
+  real_price: number
 
   @IsNumber()
   @ApiProperty()
-  UnitPrice: number
-
-  @IsOptional()
-  @IsNumber()
-  @ApiProperty()
-  Length: number
+  unit_price: number
 
   @IsOptional()
   @IsNumber()
   @ApiProperty()
-  Width: number
+  length: number
 
   @IsOptional()
   @IsNumber()
   @ApiProperty()
-  Height: number
+  width: number
 
   @IsOptional()
   @IsNumber()
   @ApiProperty()
-  Weight: number
+  height: number
+
+  @IsOptional()
+  @IsNumber()
+  @ApiProperty()
+  weight: number
 
   @IsOptional()
   @IsString()
   @ApiProperty()
-  ImageURL?: string
+  image_url?: string
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty()
-  Available: boolean
+  available: boolean
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  BrandId: number
+  brand_id: number
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  SubcategoryId: number
+  subcategory_id: number
 
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  SupplierId: number
+  supplier_id: number
 }

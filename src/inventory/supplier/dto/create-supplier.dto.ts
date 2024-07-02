@@ -6,20 +6,20 @@ export class CreateSupplierDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Name: string
+  name: string
 
   @IsNumberString()
   @IsNotEmpty()
   @ApiProperty()
-  Phone: string
+  phone: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Address: string
+  address: string
 
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty()
-  Email: string
+  email: string
 }

@@ -10,5 +10,5 @@ export class OrderDto extends PartialType(UpdateOrderDto) {
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  ProductOrder?: DeepPartial<ProductOrderDto[]>
+  product_order?: DeepPartial<ProductOrderDto[]>
 }

@@ -24,23 +24,23 @@ export class ProductService {
     }
     const newProduct = this.productRepository.create(product)
 
-    const brand = await this.brandService.findOne(product.BrandId)
+    const brand = await this.brandService.findOne(product.brand_id)
     if (!brand) {
       throw new HttpException({message: 'The brand does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProduct.Brand = brand
+    newProduct.brand = brand
 
-    const subcategory = await this.subcategoryService.findOne(product.SubcategoryId)
+    const subcategory = await this.subcategoryService.findOne(product.subcategory_id)
     if (!subcategory) {
       throw new HttpException({message: 'The category does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProduct.Subcategory = subcategory
+    newProduct.subcategory = subcategory
 
-    const supplier = await this.supplierService.findOne(product.SupplierId)
+    const supplier = await this.supplierService.findOne(product.supplier_id)
     if (!supplier) {
       throw new HttpException({message: 'The supplier does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newProduct.Supplier = supplier
+    newProduct.supplier = supplier
 
     this.productRepository.merge(newProduct, product)
 
@@ -50,7 +50,7 @@ export class ProductService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.productRepository.softDelete({Id: id})
+    const result = await this.productRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The product does not exist or could not be deleted!'},
@@ -61,7 +61,7 @@ export class ProductService {
   }
 
   async restore(id: number) {
-    const result = await this.productRepository.recover({Id: id})
+    const result = await this.productRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The product does not exist or could not be restored!'},
@@ -81,28 +81,28 @@ export class ProductService {
       )
     }
 
-    if (newProduct.Brand.Id != product.BrandId) {
-      const brand = await this.brandService.findOne(product.BrandId)
+    if (newProduct.brand.id != product.brand_id) {
+      const brand = await this.brandService.findOne(product.brand_id)
       if (!brand) {
         throw new HttpException({message: 'The brand does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProduct.Brand = brand
+      newProduct.brand = brand
     }
 
-    if (newProduct.Subcategory.Id != product.SubcategoryId) {
-      const subcategory = await this.subcategoryService.findOne(product.SubcategoryId)
+    if (newProduct.subcategory.id != product.subcategory_id) {
+      const subcategory = await this.subcategoryService.findOne(product.subcategory_id)
       if (!subcategory) {
         throw new HttpException({message: 'The category does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProduct.Subcategory = subcategory
+      newProduct.subcategory = subcategory
     }
 
-    if (newProduct.Supplier.Id != product.SupplierId) {
-      const supplier = await this.supplierService.findOne(product.SupplierId)
+    if (newProduct.supplier.id != product.supplier_id) {
+      const supplier = await this.supplierService.findOne(product.supplier_id)
       if (!supplier) {
         throw new HttpException({message: 'The supplier does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newProduct.Supplier = supplier
+      newProduct.supplier = supplier
     }
 
     this.productRepository.merge(newProduct, product)
@@ -114,14 +114,14 @@ export class ProductService {
 
   async findOneByName(product: any): Promise<Product[]> {
     const result = await this.productRepository.find({
-      where: {Name: product.Name},
+      where: {name: product.name},
     })
     return result
   }
 
   async findOne(id: number): Promise<Product> {
     const result = await this.productRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

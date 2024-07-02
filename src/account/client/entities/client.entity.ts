@@ -9,88 +9,94 @@ import {
 import * as bcrypt from 'bcrypt'
 import {BaseEntity} from '@common/class/entities/base.abstract.entities'
 // import {Profile} from '@modules/security/profile/entities/profile.entity'
-import {FavoriteProduct} from '@modules/favorite-product/entities/favorite-product.entity'
+import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
+import {Customization} from '@modules/userPreferences/customization/entities/customization.entity'
 
 @Entity('Client')
 export class Client extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Name: string
+  name: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  LastName: string
+  lastname: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  CardId: string
+  card_id: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Email: string
+  email: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Gender: string
+  gender: string
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  Address: string
+  address: string
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  Phone: string
+  phone: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Username: string
+  username: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Password: string
+  password: string
 
   @Column({
     type: 'text',
     nullable: true,
   })
-  RefreshToken: string
+  refresh_token: string
 
   // @ManyToOne(() => Profile, (profile) => profile.User, {
   //   cascade: true,
   //   lazy: true,
   // })
-  // @JoinColumn([{name: 'ProfileId', referencedColumnName: 'Id'}])
+  // @JoinColumn([{name: 'ProfileId', referencedColumnName: 'id'}])
   // Profile: Profile
 
-  @OneToMany(() => FavoriteProduct, (client) => client.Client, {
+  @OneToMany(() => FavoriteProduct, (clients) => clients.client, {
     lazy: true,
   })
-  FavoriteProduct: FavoriteProduct[]
+  favorite_product: FavoriteProduct[]
+
+  @OneToMany(() => Customization, (customization) => customization.client, {
+    lazy: true,
+  })
+  customization: Customization[]
 
   @BeforeInsert()
   @BeforeUpdate()
   async hashPassword() {
-    this.Password = await bcrypt.hashSync(this.Password, 10)
+    this.password = await bcrypt.hashSync(this.password, 10)
   }
 }

@@ -22,10 +22,14 @@ import {SubcategoryService} from '@modules/catalog/subcategory/services/subcateg
 export class SubcategoryController {
   constructor(private subcategoryService: SubcategoryService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -40,10 +44,14 @@ export class SubcategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -63,10 +71,14 @@ export class SubcategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -83,7 +95,7 @@ export class SubcategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -103,7 +115,7 @@ export class SubcategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todas las subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -123,7 +135,7 @@ export class SubcategoryController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar una subcategoria'})
   @ApiResponse({
     status: 500,
     description: 'server error',

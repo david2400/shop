@@ -13,19 +13,23 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {CreateUnitProductDto} from '../dto/create-unit-product.dto'
-import {UpdateUnitProductDto} from '../dto/update-unit-product.dto'
-import {UnitProductService} from '../services/unit-product.service'
+import {CreateUnitProductDto} from '@modules/product-management/unit-product/dto/create-unit-product.dto'
+import {UpdateUnitProductDto} from '@modules/product-management/unit-product/dto/update-unit-product.dto'
+import {UnitProductService} from '@modules/product-management/unit-product/services/unit-product.service'
 
 @ApiTags('unitProduct')
 @Controller('unitProduct')
 export class UnitProductController {
   constructor(private readonly unitProductService: UnitProductService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -40,10 +44,14 @@ export class UnitProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -63,10 +71,14 @@ export class UnitProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -83,7 +95,7 @@ export class UnitProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -103,7 +115,7 @@ export class UnitProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -123,7 +135,7 @@ export class UnitProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'crear las unidades'})
   @ApiResponse({
     status: 500,
     description: 'server error',

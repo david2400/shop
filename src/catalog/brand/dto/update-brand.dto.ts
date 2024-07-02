@@ -7,5 +7,5 @@ export class UpdateBrandDto extends PartialType(CreateBrandDto) {
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

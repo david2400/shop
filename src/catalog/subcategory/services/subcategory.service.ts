@@ -16,7 +16,7 @@ export class SubcategoryService {
   async createSubcategory(subcategory: CreateSubcategoryDto): Promise<any> {
     const result = await this.findOneByName(subcategory)
     if (result.length != 0) {
-      throw new HttpException({message: 'Subcategory already registered exist!'}, HttpStatus.FOUND)
+      throw new HttpException({message: 'subcategory already registered exist!'}, HttpStatus.FOUND)
     }
     const newSubcategory = this.subcategoryRepository.create(subcategory)
 
@@ -24,7 +24,7 @@ export class SubcategoryService {
     if (!category) {
       throw new HttpException({message: 'The category does not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newSubcategory.Category = category
+    newSubcategory.category = category
 
     this.subcategoryRepository.merge(newSubcategory, subcategory)
 
@@ -34,7 +34,7 @@ export class SubcategoryService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.subcategoryRepository.softDelete({Id: id})
+    const result = await this.subcategoryRepository.softDelete({id: id})
 
     if (result.affected === 0) {
       throw new HttpException(
@@ -46,7 +46,7 @@ export class SubcategoryService {
   }
 
   async restore(id: number) {
-    const result = await this.subcategoryRepository.recover({Id: id})
+    const result = await this.subcategoryRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The subcategory does not exist or could not be restored!'},
@@ -66,12 +66,12 @@ export class SubcategoryService {
       )
     }
 
-    if (newSubcategory.Category.Id != subcategory.CategoryId) {
+    if (newSubcategory.category.id != subcategory.CategoryId) {
       const category = await this.categoryService.findOne(subcategory.CategoryId)
       if (!category) {
         throw new HttpException({message: 'The category does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newSubcategory.Category = category
+      newSubcategory.category = category
     }
     this.subcategoryRepository.merge(newSubcategory, subcategory)
 
@@ -82,14 +82,14 @@ export class SubcategoryService {
 
   async findOneByName(subcategory: any): Promise<Subcategory[]> {
     const result = await this.subcategoryRepository.find({
-      where: {Name: subcategory.Name},
+      where: {name: subcategory.name},
     })
     return result
   }
 
   async findOne(id: number): Promise<Subcategory> {
     const result = await this.subcategoryRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

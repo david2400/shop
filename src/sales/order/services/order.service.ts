@@ -21,7 +21,7 @@ export class OrderService {
 
   async delete(id: number): Promise<UpdateResult> {
     // const result = await this.orderRepository.query('CALL restore_inventory_product(?)', [id])
-    const deleted = await this.orderRepository.softDelete({Id: id})
+    const deleted = await this.orderRepository.softDelete({id: id})
 
     if (deleted.affected === 0) {
       throw new HttpException(
@@ -49,7 +49,7 @@ export class OrderService {
 
   async findOne(id: number): Promise<Order> {
     const order = await this.orderRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return order
   }

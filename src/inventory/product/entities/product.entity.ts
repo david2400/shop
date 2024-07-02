@@ -1,125 +1,140 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import {BaseEntity} from '@common/class/entities/base.abstract.entities'
 import {ProductOrder} from '@modules/sales/product-order/entities/product-order.entity'
-import {FavoriteProduct} from '@modules/favorite-product/entities/favorite-product.entity'
+import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
 import {Subcategory} from '@modules/catalog/subcategory/entities/subcategory.entity'
 import {Brand} from '@modules/catalog/brand/entities/brand.entity'
 import {Supplier} from '@modules/inventory/supplier/entities/supplier.entity'
 import {ComboProduct} from '@modules/inventory/combo-product/entities/combo-product.entity'
 import {ProductFeature} from '@modules/product-management/product-features/entities/product-feature.entity'
+import {Customization} from '@modules/userPreferences/customization/entities/customization.entity'
 
-@Entity('Product')
+@Entity('product')
 export class Product extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  Name: string
+  name: string
 
   @Column({
     type: 'varchar',
     length: 255,
     nullable: false,
   })
-  Description: string
+  description: string
 
   @Column({
     type: 'int',
     nullable: false,
   })
-  Stock: number
+  stock: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  RealPrice: number
+  real_price: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  UnitPrice: number
+  unit_price: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Length: number
+  length: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Width: number
+  width: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Height: number
+  height: number
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Weight: number
+  weight: number
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  ImageURL?: string
+  image_url?: string
 
   @Column({
     type: 'bit',
     nullable: false,
     default: true,
   })
-  Available: boolean
+  available: boolean
 
-  @ManyToOne(() => Brand, (brand) => brand.Product, {
+  @ManyToOne(() => Brand, (brand) => brand.product, {
     cascade: true,
     lazy: true,
   })
-  @JoinColumn([{name: 'BrandId', referencedColumnName: 'Id'}])
-  Brand: Brand
+  @JoinColumn([{name: 'brand_id', referencedColumnName: 'id'}])
+  brand: Brand
 
-  @ManyToOne(() => Subcategory, (subcategory) => subcategory.Product, {
+  @ManyToOne(() => Subcategory, (subcategory) => subcategory.product, {
     cascade: true,
     lazy: true,
     eager: true,
   })
-  @JoinColumn([{name: 'SubcategoryId', referencedColumnName: 'Id'}])
-  Subcategory: Subcategory
+  @JoinColumn([{name: 'subcategory_id', referencedColumnName: 'id'}])
+  subcategory: Subcategory
 
-  @ManyToOne(() => Supplier, (supplier) => supplier.Product, {
+  @ManyToOne(() => Supplier, (supplier) => supplier.product, {
     cascade: true,
     lazy: true,
   })
-  @JoinColumn([{name: 'SupplierId', referencedColumnName: 'Id'}])
-  Supplier: Supplier
+  @JoinColumn([{name: 'supplier_id', referencedColumnName: 'id'}])
+  supplier: Supplier
 
-  @OneToMany(() => ProductOrder, (productOrder) => productOrder.Product, {
+  @OneToMany(() => ProductOrder, (productOrder) => productOrder.product, {
     lazy: true,
   })
   ProductOrder: ProductOrder[]
 
-  @OneToMany(() => FavoriteProduct, (favorite) => favorite.Product, {
+  @OneToMany(() => FavoriteProduct, (favorite) => favorite.product, {
     lazy: true,
   })
-  FavoriteProduct: FavoriteProduct[]
+  favorite_product: FavoriteProduct[]
 
-  @OneToMany(() => ComboProduct, (productcombo) => productcombo.Product, {
+  @OneToMany(() => ComboProduct, (productcombo) => productcombo.product, {
     lazy: true,
   })
-  ComboProduct: ComboProduct[]
+  combo_product: ComboProduct[]
 
-  @OneToMany(() => ProductFeature, (productFeature) => productFeature.Feature, {
+  @OneToMany(() => ProductFeature, (productFeature) => productFeature.feature, {
     lazy: true,
   })
   ProductFeature: ProductFeature[]
+
+  @ManyToMany(() => Customization, (customization) => customization.customization_product, {
+    lazy: true,
+    eager: true,
+  })
+  ProductCustomization: Customization[]
 }

@@ -23,10 +23,14 @@ import {UpdateClientDto} from '@modules/account/client/dto/update-client.dto'
 export class ClientController {
   constructor(private clientService: ClientService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -41,10 +45,14 @@ export class ClientController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -64,10 +72,14 @@ export class ClientController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -84,7 +96,7 @@ export class ClientController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -104,7 +116,7 @@ export class ClientController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todos los clientes'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -124,7 +136,7 @@ export class ClientController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar un cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',

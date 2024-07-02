@@ -28,6 +28,10 @@ export class BillController {
     description: 'server error',
   })
   @ApiResponse({
+    status: 302,
+    description: 'already registered',
+  })
+@ApiResponse({
     status: 201,
     description: 'success register',
     type: CreateBillDto,
@@ -46,6 +50,10 @@ export class BillController {
     description: 'server error',
   })
   @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
+  })
+@ApiResponse({
     status: 200,
     description: 'success register',
     type: UpdateResult,
@@ -69,6 +77,10 @@ export class BillController {
     description: 'server error',
   })
   @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
+  })
+@ApiResponse({
     status: 200,
     description: 'success register',
     type: UpdateResult,

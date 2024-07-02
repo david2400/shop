@@ -1,5 +1,5 @@
 import {Test, TestingModule} from '@nestjs/testing'
-import {FavoriteProductService} from '@modules/favorite-product/services/favorite-product.service'
+import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/favorite-product.service'
 
 describe('FavoriteProductService', () => {
   let service: FavoriteProductService

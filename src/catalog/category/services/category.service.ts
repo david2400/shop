@@ -13,7 +13,7 @@ export class CategoryService {
     const result = await this.findOneByName(category)
 
     if (result.length != 0) {
-      throw new HttpException({message: 'The Category already registered!'}, HttpStatus.FOUND)
+      throw new HttpException({message: 'The category already registered!'}, HttpStatus.FOUND)
     }
     const newCategory = this.categoryRepository.create(category)
 
@@ -25,7 +25,7 @@ export class CategoryService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.categoryRepository.softDelete({Id: id})
+    const result = await this.categoryRepository.softDelete({id: id})
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The category does not exist or could not be delete!'},
@@ -36,7 +36,7 @@ export class CategoryService {
   }
 
   async restore(id: number) {
-    const result = await this.categoryRepository.recover({Id: id})
+    const result = await this.categoryRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The category does not exist or could not be restored!'},
@@ -51,7 +51,7 @@ export class CategoryService {
 
     this.categoryRepository.merge(newCategory, category)
 
-    const result = await this.categoryRepository.update({Id: id}, newCategory)
+    const result = await this.categoryRepository.update({id: id}, newCategory)
     if (result.affected === 0) {
       throw new HttpException(
         {message: 'The category does not exist or could not be modify!'},
@@ -63,14 +63,14 @@ export class CategoryService {
 
   async findOneByName(category: CreateCategoryDto): Promise<Category[]> {
     const result = await this.categoryRepository.find({
-      where: {Name: category.Name},
+      where: {name: category.name},
     })
     return result
   }
 
   async findOne(id: number): Promise<Category> {
     const result = await this.categoryRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

@@ -7,5 +7,5 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

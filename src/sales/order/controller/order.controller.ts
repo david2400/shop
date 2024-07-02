@@ -28,6 +28,10 @@ export class OrderController {
     description: 'server error',
   })
   @ApiResponse({
+    status: 302,
+    description: 'already registered',
+  })
+  @ApiResponse({
     status: 201,
     description: 'success register',
     type: CreateOrderDto,
@@ -44,6 +48,10 @@ export class OrderController {
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -67,6 +75,10 @@ export class OrderController {
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,

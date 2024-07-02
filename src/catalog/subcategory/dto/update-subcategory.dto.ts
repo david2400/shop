@@ -7,5 +7,5 @@ export class UpdateSubcategoryDto extends PartialType(CreateSubcategoryDto) {
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

@@ -5,25 +5,25 @@ export class CreateProductFeatureDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  Value: number
+  value: number
 
   @IsOptional()
   @IsString()
   @ApiProperty()
-  ExtraData: string
+  extra_data: string
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  UnitProductId: number
+  unit_product_id: number
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  ProductId: number
+  product_id: number
 
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  FeatureId: number
+  feature_id: number
 }

@@ -9,5 +9,5 @@ export class BrandDto extends PartialType(UpdateBrandDto) {
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  Product: ProductDto[]
+  product: ProductDto[]
 }

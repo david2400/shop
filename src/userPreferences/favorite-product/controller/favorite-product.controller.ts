@@ -13,18 +13,22 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {FavoriteProductService} from '@modules/favorite-product/services/favorite-product.service'
-import {CreateFavoriteProductDto} from '@modules/favorite-product/dto/create-favorite-product.dto'
+import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/favorite-product.service'
+import {CreateFavoriteProductDto} from '@modules/userPreferences/favorite-product/dto/create-favorite-product.dto'
 
 @ApiTags('favorite-product')
 @Controller('favorite-product')
 export class FavoriteProductController {
   constructor(private favoriteProductService: FavoriteProductService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear los productos favoritos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -39,10 +43,14 @@ export class FavoriteProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar los productos favoritos'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -59,7 +67,7 @@ export class FavoriteProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar todos los productos favoritos de un cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -79,7 +87,7 @@ export class FavoriteProductController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar un producto favorito de un cliente'})
   @ApiResponse({
     status: 500,
     description: 'server error',

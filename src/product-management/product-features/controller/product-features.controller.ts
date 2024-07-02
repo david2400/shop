@@ -23,10 +23,14 @@ import {ProductFeaturesService} from '@modules/product-management/product-featur
 export class ProductFeaturesController {
   constructor(private readonly productFeaturesService: ProductFeaturesService) {}
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Crear las caracteristicas de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 302,
+    description: 'already registered',
   })
   @ApiResponse({
     status: 201,
@@ -41,7 +45,7 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Comparar las caracteristicas entre producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -63,10 +67,14 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Modificar las caracteristicas de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -86,10 +94,14 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Eliminar las caracteristicas de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'not fount a register',
   })
   @ApiResponse({
     status: 200,
@@ -106,7 +118,7 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Restaurar las caracteristicas de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -126,7 +138,7 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar las caracteristicas de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',
@@ -146,7 +158,7 @@ export class ProductFeaturesController {
     return result
   }
 
-  @ApiOperation({summary: 'crear marca'})
+  @ApiOperation({summary: 'Buscar una caracteristica de un producto'})
   @ApiResponse({
     status: 500,
     description: 'server error',

@@ -5,35 +5,35 @@ import {Bill} from '../../billing/bill/entities/bill.entity'
 
 @Entity('Order')
 export class Order extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  ComplementaryOrder: string
+  complementary_order: string
 
   @Column({
     type: 'varchar',
     nullable: false,
   })
-  State: string
+  state: string
 
   @Column({
     type: 'decimal',
     nullable: false,
   })
-  Total: number
+  total: number
 
-  @OneToMany(() => ProductOrder, (productOrder) => productOrder.Product, {
+  @OneToMany(() => ProductOrder, (productOrder) => productOrder.product, {
     eager: true,
     lazy: true,
   })
-  ProductOrder: ProductOrder[]
+  product_order: ProductOrder[]
 
   @OneToMany(() => Bill, (bil) => bil.Order, {
     lazy: true,
   })
-  Bill: Bill[]
+  bill: Bill[]
 }

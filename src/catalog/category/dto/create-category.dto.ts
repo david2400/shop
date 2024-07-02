@@ -6,10 +6,10 @@ export class CreateCategoryDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Name: string
+  name: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  Slug: string
+  slug: string
 }

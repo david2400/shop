@@ -6,28 +6,28 @@ export class CreateProductOrderDto extends BaseDto {
   @IsNotEmpty()
   @IsInt()
   @ApiProperty()
-  readonly Quantity: number
+  readonly quantity: number
 
   @IsNotEmpty()
   @IsDecimal()
   @ApiProperty()
-  readonly Discount: number
+  readonly discount: number
 
   @IsNotEmpty()
   @IsDecimal()
   @ApiProperty()
-  readonly Subtotal: number
+  readonly subtotal: number
 
   @IsNotEmpty()
   @IsDecimal()
   @ApiProperty()
-  readonly Total: number
+  readonly total: number
 
   @ValidateNested()
   @IsNumber()
   @IsOptional()
   @ApiProperty()
-  ProductId: number
+  product_id: number
 
   @ValidateNested()
   @IsNumber()

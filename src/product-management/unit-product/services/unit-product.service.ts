@@ -12,25 +12,25 @@ export class UnitProductService {
   async create(unitProduct: CreateUnitProductDto): Promise<any> {
     const result = await this.findOneByName(unitProduct)
     if (result.length != 0) {
-      throw new HttpException({message: 'Unit Product already registered exist!'}, HttpStatus.FOUND)
+      throw new HttpException({message: 'Unit product already registered exist!'}, HttpStatus.FOUND)
     }
 
     const newUnitProduct = this.unitRepository.create(unitProduct)
 
-    if (unitProduct.GreaterUnitId) {
-      const GreaterUnit = await this.findOne(unitProduct.GreaterUnitId)
+    if (unitProduct.greater_unit_id) {
+      const GreaterUnit = await this.findOne(unitProduct.greater_unit_id)
       if (!GreaterUnit) {
         throw new HttpException({message: 'The brand does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newUnitProduct.GreaterUnit = GreaterUnit
+      newUnitProduct.greater_unit = GreaterUnit
     }
 
-    if (unitProduct.SmallerUnitId) {
-      const SmallerUnitId = await this.findOne(unitProduct.SmallerUnitId)
+    if (unitProduct.smaller_unit_id) {
+      const SmallerUnitId = await this.findOne(unitProduct.smaller_unit_id)
       if (!SmallerUnitId) {
         throw new HttpException({message: 'The brand does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newUnitProduct.SmallerUnit = SmallerUnitId
+      newUnitProduct.smaller_unit = SmallerUnitId
     }
     this.unitRepository.merge(newUnitProduct, unitProduct)
 
@@ -40,11 +40,11 @@ export class UnitProductService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.unitRepository.softDelete({Id: id})
+    const result = await this.unitRepository.softDelete({id: id})
 
     if (result.affected === 0) {
       throw new HttpException(
-        {message: 'The Unit Product does not exist or could not be deleted!'},
+        {message: 'The Unit product does not exist or could not be deleted!'},
         HttpStatus.NOT_FOUND
       )
     }
@@ -52,10 +52,10 @@ export class UnitProductService {
   }
 
   async restore(id: number) {
-    const result = await this.unitRepository.recover({Id: id})
+    const result = await this.unitRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
-        {message: 'The Unit Product does not exist or could not be restored!'},
+        {message: 'The Unit product does not exist or could not be restored!'},
         HttpStatus.NOT_FOUND
       )
     }
@@ -67,25 +67,31 @@ export class UnitProductService {
 
     if (!newUnitProduct) {
       throw new HttpException(
-        {message: 'The Unit Product does not exist or could not be modify!'},
+        {message: 'The Unit product does not exist or could not be modify!'},
         HttpStatus.NOT_FOUND
       )
     }
 
-    if (newUnitProduct.GreaterUnit.Id != unitProduct.GreaterUnitId && unitProduct.GreaterUnitId) {
-      const GreaterUnit = await this.findOne(unitProduct.GreaterUnitId)
+    if (
+      newUnitProduct.greater_unit.id != unitProduct.greater_unit_id &&
+      unitProduct.greater_unit_id
+    ) {
+      const GreaterUnit = await this.findOne(unitProduct.greater_unit_id)
       if (!GreaterUnit) {
         throw new HttpException({message: 'The greater unit does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newUnitProduct.GreaterUnit = GreaterUnit
+      newUnitProduct.greater_unit = GreaterUnit
     }
 
-    if (newUnitProduct.SmallerUnit.Id != unitProduct.SmallerUnitId && unitProduct.SmallerUnitId) {
-      const SmallerUnitId = await this.findOne(unitProduct.SmallerUnitId)
+    if (
+      newUnitProduct.smaller_unit.id != unitProduct.smaller_unit_id &&
+      unitProduct.smaller_unit_id
+    ) {
+      const SmallerUnitId = await this.findOne(unitProduct.smaller_unit_id)
       if (!SmallerUnitId) {
         throw new HttpException({message: 'The smaller unit does not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newUnitProduct.SmallerUnit = SmallerUnitId
+      newUnitProduct.smaller_unit = SmallerUnitId
     }
 
     this.unitRepository.merge(newUnitProduct, unitProduct)
@@ -97,14 +103,14 @@ export class UnitProductService {
 
   async findOneByName(unitProduct: any): Promise<UnitProduct[]> {
     const result = await this.unitRepository.find({
-      where: {Name: unitProduct.Name},
+      where: {name: unitProduct.name},
     })
     return result
   }
 
   async findOne(id: number): Promise<UnitProduct> {
     const result = await this.unitRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

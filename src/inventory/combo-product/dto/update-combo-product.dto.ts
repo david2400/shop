@@ -7,5 +7,5 @@ export class UpdateComboProductDto extends PartialType(CreateComboProductDto) {
   @IsUUID()
   @IsOptional()
   @ApiProperty()
-  readonly Id: number
+  readonly id: number
 }

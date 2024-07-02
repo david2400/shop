@@ -9,5 +9,5 @@ export class FeatureDto extends PartialType(UpdateFeatureDto) {
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  ProductFeature?: DeepPartial<ProductFeatureDto[]>
+  product_feature?: DeepPartial<ProductFeatureDto[]>
 }

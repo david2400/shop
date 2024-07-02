@@ -10,5 +10,5 @@ export class SupplierDto extends PartialType(UpdateSupplierDto) {
   @IsArray()
   @IsOptional()
   @ApiProperty()
-  Product?: DeepPartial<ProductDto[]>
+  product?: DeepPartial<ProductDto[]>
 }

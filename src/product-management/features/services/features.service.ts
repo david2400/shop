@@ -20,11 +20,11 @@ export class FeaturesService {
     }
     const newFeature = this.featureRepository.create(feature)
 
-    const roles = await this.unitProductService.findByIds(feature.FeatureUnit)
-    if (roles.length == 0 || roles.length < feature.FeatureUnit.length) {
+    const roles = await this.unitProductService.findByIds(feature.feature_unit)
+    if (roles.length == 0 || roles.length < feature.feature_unit.length) {
       throw new HttpException({message: 'The roles are not exist!'}, HttpStatus.NOT_FOUND)
     }
-    newFeature.FeatureUnit = roles
+    newFeature.feature_unit = roles
 
     this.featureRepository.merge(newFeature, feature)
 
@@ -34,7 +34,7 @@ export class FeaturesService {
   }
 
   async delete(id: number): Promise<UpdateResult> {
-    const result = await this.featureRepository.softDelete({Id: id})
+    const result = await this.featureRepository.softDelete({id: id})
 
     if (result.affected === 0) {
       throw new HttpException(
@@ -46,7 +46,7 @@ export class FeaturesService {
   }
 
   async restore(id: number) {
-    const result = await this.featureRepository.recover({Id: id})
+    const result = await this.featureRepository.recover({id: id})
     if (result.DeleteAt === undefined) {
       throw new HttpException(
         {message: 'The feature does not exist or could not be restored!'},
@@ -66,12 +66,12 @@ export class FeaturesService {
       )
     }
 
-    if (feature.FeatureUnit) {
-      const unitProducts = await this.unitProductService.findByIds(feature.FeatureUnit)
-      if (unitProducts.length == 0 || unitProducts.length < feature.FeatureUnit.length) {
+    if (feature.feature_unit) {
+      const unitProducts = await this.unitProductService.findByIds(feature.feature_unit)
+      if (unitProducts.length == 0 || unitProducts.length < feature.feature_unit.length) {
         throw new HttpException({message: 'The roles are not exist!'}, HttpStatus.NOT_FOUND)
       }
-      newFeature.FeatureUnit = unitProducts
+      newFeature.feature_unit = unitProducts
     }
 
     this.featureRepository.merge(newFeature, feature)
@@ -83,14 +83,14 @@ export class FeaturesService {
 
   async findOneByName(feature: any): Promise<Feature[]> {
     const result = await this.featureRepository.find({
-      where: {Name: feature.Name},
+      where: {name: feature.name},
     })
     return result
   }
 
   async findOne(id: number): Promise<Feature> {
     const result = await this.featureRepository.findOne({
-      where: {Id: id},
+      where: {id: id},
     })
     return result
   }

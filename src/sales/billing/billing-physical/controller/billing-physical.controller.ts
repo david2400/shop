@@ -112,7 +112,7 @@ export class BillingPhysicalController {
   // @ApiResponse({
   //   status: 200,
   //   description: 'success register',
-  //   type: [Supplier],
+  //   type: [supplier],
   // })
   // //   @UseGuards(JwtAuthGuard, RolesGuard)
   // //   @hasRoles(Role.ESTUDENT, Role.ADMIN)
@@ -131,7 +131,7 @@ export class BillingPhysicalController {
   // @ApiResponse({
   //   status: 200,
   //   description: 'success register',
-  //   type: Supplier,
+  //   type: supplier,
   // })
   // //   @UseGuards(JwtAuthGuard, RolesGuard)
   // //   @hasRoles(Role.ESTUDENT, Role.ADMIN)

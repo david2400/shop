@@ -6,41 +6,41 @@ import {Feature} from '@modules/product-management/features/entities/feature.ent
 
 @Entity('FeaturesProduct')
 export class ProductFeature extends BaseEntity {
-  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'Id'})
-  Id: number
+  @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
+  id: number
 
   @Column({
     type: 'int',
     nullable: false,
   })
-  Value: number
+  value: number
 
   @Column({
     type: 'varchar',
     nullable: true,
   })
-  ExtraData: string
+  extra_data: string
 
-  @ManyToOne(() => UnitProduct, (unit) => unit.ProductFeature, {
+  @ManyToOne(() => UnitProduct, (unit) => unit.product_feature, {
     cascade: true,
     lazy: true,
     eager: true,
   })
-  @JoinColumn([{name: 'UnitProductId', referencedColumnName: 'Id'}])
-  UnitProduct: UnitProduct
+  @JoinColumn([{name: 'unit_product_id', referencedColumnName: 'id'}])
+  unit_product: UnitProduct
 
   @ManyToOne(() => Product, (product) => product.ProductFeature, {
     cascade: true,
     lazy: true,
   })
-  @JoinColumn([{name: 'ProductId', referencedColumnName: 'Id'}])
-  Product: Product
+  @JoinColumn([{name: 'product_id', referencedColumnName: 'id'}])
+  product: Product
 
-  @ManyToOne(() => Feature, (feature) => feature.ProductFeature, {
+  @ManyToOne(() => Feature, (feature) => feature.product_feature, {
     cascade: true,
     lazy: true,
     eager: true,
   })
-  @JoinColumn([{name: 'FeatureId', referencedColumnName: 'Id'}])
-  Feature: Feature
+  @JoinColumn([{name: 'feature id', referencedColumnName: 'id'}])
+  feature: Feature
 }
