@@ -2,7 +2,7 @@ import {Reflector} from '@nestjs/core'
 import {CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable} from '@nestjs/common'
 import {Observable} from 'rxjs'
 import {PUBLIC_KEY} from '@/constants'
-import {SigninService} from '@modules/account/auth/signin/services/signin.service'
+import {SigninService} from '@modules/account/auth/signin/services/impl/signin.service'
 
 @Injectable()
 export class AuthGuard implements CanActivate {

@@ -1,6 +1,6 @@
 import {Test, TestingModule} from '@nestjs/testing'
 import {CombosController} from '@modules/inventory/combos/controller/combos.controller'
-import {CombosService} from '@modules/inventory/combos/services/combos.service'
+import {CombosService} from '@modules/inventory/combos/services/impl/combos.service'
 
 describe('CombosController', () => {
   let controller: CombosController

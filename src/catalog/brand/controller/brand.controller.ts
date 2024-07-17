@@ -19,7 +19,7 @@ import {AuthGuard} from '@common/guards/auth/auth.guard'
 import {CreateBrandDto} from '@modules/catalog/brand/dto/create-brand.dto'
 import {UpdateBrandDto} from '@modules/catalog/brand/dto/update-brand.dto'
 import {Brand} from '@modules/catalog/brand/entities/brand.entity'
-import {BrandService} from '@modules/catalog/brand/services/brand.service'
+import {BrandService} from '@modules/catalog/brand/services/impl/brand.service'
 
 @ApiTags('brand')
 @Controller('brand')

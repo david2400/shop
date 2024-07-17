@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common'
 import {TypeOrmModule} from '@nestjs/typeorm'
 import {Category} from '@modules/catalog/category/entities/category.entity'
 import {CategoryRepository} from '@modules/catalog/category/repository/category.repository'
-import {CategoryService} from '@modules/catalog/category/services/category.service'
+import {CategoryService} from '@modules/catalog/category/services/impl/category.service'
 import {CategoryController} from '@modules/catalog/category/controller/category.controller'
 
 @Module({

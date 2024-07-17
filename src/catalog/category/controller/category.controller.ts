@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {CategoryService} from '@modules/catalog/category/services/category.service'
+import {CategoryService} from '@modules/catalog/category/services/impl/category.service'
 import {CreateCategoryDto} from '@modules/catalog/category/dto/create-category.dto'
 import {UpdateCategoryDto} from '@modules/catalog/category/dto/update-category.dto'
 

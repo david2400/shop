@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common'
 import {TypeOrmModule} from '@nestjs/typeorm'
 import {customization} from '@modules/userPreferences/customization/entities/customization.entity'
 import {CustomizationRepository} from '@modules/userPreferences/customization/repository/customization.repository'
-import {CustomizationService} from '@modules/userPreferences/customization/services/customization.service'
+import {CustomizationService} from '@modules/userPreferences/customization/services/impl/customization.service'
 import {CustomizationController} from '@modules/userPreferences/customization/controller/customization.controller'
 
 @Module({

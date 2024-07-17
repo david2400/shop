@@ -15,7 +15,7 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {CreateFeatureDto} from '@modules/product-management/features/dto/create-feature.dto'
 import {UpdateFeatureDto} from '@modules/product-management/features/dto/update-feature.dto'
-import {FeaturesService} from '@modules/product-management/features/services/features.service'
+import {FeaturesService} from '@modules/product-management/features/services/impl/features.service'
 
 @ApiTags('features')
 @Controller('features')

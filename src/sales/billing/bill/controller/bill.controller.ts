@@ -16,7 +16,7 @@ import {UpdateResult} from 'typeorm'
 import {Bill} from '@modules/sales/billing/bill/entities/bill.entity'
 import {CreateBillDto} from '@modules/sales/billing/bill/dto/create-bill.dto'
 import {UpdateBillDto} from '@modules/sales/billing/bill/dto/update-bill.dto'
-import {BillService} from '@modules/sales/billing/bill/services/bill.service'
+import {BillService} from '@modules/sales/billing/bill/services/impl/bill.service'
 
 @Controller('bill')
 export class BillController {

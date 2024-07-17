@@ -3,7 +3,7 @@ import {TypeOrmModule} from '@nestjs/typeorm'
 import {UnitProductModule} from '@modules/product-management/unit-product/unit-product.module'
 import {Feature} from '@modules/product-management/features/entities/feature.entity'
 import {FeaturesRepository} from '@modules/product-management/features/repository/features.repository'
-import {FeaturesService} from '@modules/product-management/features/services/features.service'
+import {FeaturesService} from '@modules/product-management/features/services/impl/features.service'
 import {FeaturesController} from '@modules/product-management/features/controller/features.controller'
 
 @Module({

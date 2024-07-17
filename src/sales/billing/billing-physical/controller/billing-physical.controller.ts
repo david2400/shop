@@ -16,7 +16,7 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {CreateBillingPhysicalDto} from '../dto/create-billing-physical.input'
 import {UpdateBillingPhysicalDto} from '../dto/update-billing-physical.input'
-import {BillingPhysicalService} from '../services/billing-physical.service'
+import {BillingPhysicalService} from '../services/impl/billing-physical.service'
 
 @ApiTags('billing-physical')
 @Controller('billing-physical')

@@ -13,7 +13,7 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {CreateComboDto} from '@modules/inventory/combos/dto/create-combo.dto'
 import {UpdateComboDto} from '@modules/inventory/combos/dto/update-combo.dto'
-import {CombosService} from '@modules/inventory/combos/services/combos.service'
+import {CombosService} from '@modules/inventory/combos/services/impl/combos.service'
 
 @ApiTags('combos')
 @Controller('combos')

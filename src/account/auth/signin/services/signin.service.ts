@@ -11,7 +11,7 @@ import {JwtService} from '@nestjs/jwt'
 import * as bcrypt from 'bcrypt'
 import {jwtConstants} from '@/constants'
 import type {JwtPayload} from '@common/interface/login/signin.interface'
-import {ClientService} from '@modules/account/client/services/client.service'
+import {ClientService} from '@modules/account/client/services/impl/client.service'
 import {CreateSigninDto} from '@modules/account/auth/signin/dto/create-signin.dto'
 
 @Injectable()

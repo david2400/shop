@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {ProductService} from '@modules/inventory/product/services/product.service'
+import {ProductService} from '@modules/inventory/product/services/impl/product.service'
 import {CreateProductDto} from '@modules/inventory/product/dto/create-product.dto'
 import {UpdateProductDto} from '@modules/inventory/product/dto/update-product.dto'
 

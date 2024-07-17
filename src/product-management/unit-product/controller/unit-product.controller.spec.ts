@@ -1,6 +1,6 @@
 import {Test, TestingModule} from '@nestjs/testing'
 import {UnitProductController} from '@modules/product-management/unit-product/controller/unit-product.controller'
-import {UnitProductService} from '@modules/product-management/unit-product/services/unit-product.service'
+import {UnitProductService} from '@modules/product-management/unit-product/services/impl/unit-product.service'
 
 describe('UnitProductController', () => {
   let controller: UnitProductController

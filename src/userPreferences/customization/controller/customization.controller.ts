@@ -15,7 +15,7 @@ import {
 import {UpdateResult} from 'typeorm'
 import {CreateCustomizationDto} from '@modules/userPreferences/customization/dto/create-customization.dto'
 import {UpdateCustomizationDto} from '@modules/userPreferences/customization/dto/update-customization.dto'
-import {CustomizationService} from '@modules/userPreferences/customization/services/customization.service'
+import {CustomizationService} from '@modules/userPreferences/customization/services/impl/customization.service'
 
 @Controller('customization')
 export class CustomizationController {
