@@ -1,5 +1,5 @@
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {Category} from '@modules/catalog/category/entities/category.entity'
 import {Product} from '@modules/inventory/product/entities/product.entity'
 
@@ -20,9 +20,17 @@ export class Subcategory extends BaseEntity {
   })
   slug: string
 
+  @Column({
+    type: 'int',
+    nullable: false,
+    unsigned: true,
+  })
+  category_id: number
+
   @ManyToOne(() => Category, (category) => category.subcategory, {
     cascade: true,
     lazy: true,
+    persistence: false,
   })
   @JoinColumn([{name: 'category_id', referencedColumnName: 'id'}])
   category: Category

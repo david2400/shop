@@ -7,7 +7,7 @@ import {
   BeforeUpdate,
 } from 'typeorm'
 import * as bcrypt from 'bcrypt'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 // import {Profile} from '@modules/security/profile/entities/profile.entity'
 import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
 import {Customization} from '@modules/userPreferences/customization/entities/customization.entity'

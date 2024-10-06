@@ -1,6 +1,6 @@
 import {Module} from '@nestjs/common'
 import {ConfigsModule} from '@config/config.module'
-import {FiltersModule} from '@common/filters/filters.module'
+import {FiltersModule} from '@/filters/filters.module'
 import {SalesModule} from '@modules/sales/sales.module'
 import {InventoryModule} from '@modules/inventory/inventory.module'
 import {CatalogModule} from '@modules/catalog/catalog.module'

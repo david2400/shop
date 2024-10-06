@@ -1,5 +1,5 @@
 import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {Product} from '@modules/inventory/product/entities/product.entity'
 import {Order} from '@modules/sales/order/entities/order.entity'
 
@@ -32,7 +32,7 @@ export class ProductOrder extends BaseEntity {
   })
   total: number
 
-  @ManyToOne(() => Product, (product) => product.ProductOrder, {
+  @ManyToOne(() => Product, (product) => product.product_order, {
     cascade: true,
     lazy: true,
   })

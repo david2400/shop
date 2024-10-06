@@ -15,11 +15,11 @@ import {
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {Public} from '@common/decorators/public.decorator'
-import {AuthGuard} from '@common/guards/auth/auth.guard'
+import {AuthGuard} from '@/guards/auth/auth.guard'
 import {CreateBrandDto} from '@modules/catalog/brand/dto/create-brand.dto'
 import {UpdateBrandDto} from '@modules/catalog/brand/dto/update-brand.dto'
 import {Brand} from '@modules/catalog/brand/entities/brand.entity'
-import {BrandService} from '@modules/catalog/brand/services/impl/brand.service'
+import {BrandService} from '@/src/catalog/brand/services/brand.service'
 
 @ApiTags('brand')
 @Controller('brand')

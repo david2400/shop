@@ -15,12 +15,12 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {CreateSubcategoryDto} from '@modules/catalog/subcategory/dto/create-subcategory.dto'
 import {UpdateSubcategoryDto} from '@modules/catalog/subcategory/dto/update-subcategory.dto'
-import {ISubcategory} from '@modules/catalog/subcategory/services/interface/subcategory.interface'
+import {SubcategoryService} from '@/src/catalog/subcategory/services/subcategory.service'
 
 @ApiTags('subcategory')
 @Controller('subcategory')
 export class SubcategoryController {
-  constructor(private subcategoryService: ISubcategory) {}
+  constructor(private subcategoryService: SubcategoryService) {}
 
   @ApiOperation({summary: 'Crear subcategoria'})
   @ApiResponse({

@@ -1,5 +1,5 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {ProductOrder} from '@modules/sales/product-order/entities/product-order.entity'
 import {Bill} from '../../billing/bill/entities/bill.entity'
 
@@ -32,7 +32,7 @@ export class Order extends BaseEntity {
   })
   product_order: ProductOrder[]
 
-  @OneToMany(() => Bill, (bil) => bil.Order, {
+  @OneToMany(() => Bill, (bil) => bil.order, {
     lazy: true,
   })
   bill: Bill[]

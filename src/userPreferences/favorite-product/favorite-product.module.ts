@@ -4,7 +4,7 @@ import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entitie
 import {ClientModule} from '@modules/account/client/client.module'
 import {ProductModule} from '@modules/inventory/product/product.module'
 import {FavoriteProductRepository} from '@modules/userPreferences/favorite-product/repository/favorite-product.repository'
-import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/impl/favorite-product.service'
+import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/favorite-product.service'
 import {FavoriteProductController} from '@modules/userPreferences/favorite-product/controller/favorite-product.controller'
 
 @Module({

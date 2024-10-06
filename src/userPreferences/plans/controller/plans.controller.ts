@@ -12,7 +12,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common'
 import {UpdateResult} from 'typeorm'
-import {PlansService} from '@modules/userPreferences/plans/services/impl/plans.service'
+import {PlansService} from '@modules/userPreferences/plans/services/plans.service'
 import {CreatePlanDto} from '@modules/userPreferences/plans/dto/create-plan.dto'
 import {UpdatePlanDto} from '@modules/userPreferences/plans/dto/update-plan.dto'
 import {ApiOperation, ApiResponse} from '@nestjs/swagger'

@@ -1,9 +1,9 @@
 import {Global, Module, forwardRef} from '@nestjs/common'
 import {JwtModule} from '@nestjs/jwt'
 import {PassportModule} from '@nestjs/passport'
+import {SigninService} from '@modules/account/auth/signin/services/signin.service'
 import {ConfigService, ConfigModule} from '@nestjs/config'
 import {JwtStrategy} from '@common/estrategy/jwtStrategy.strategy'
-import {SigninService} from '@modules/account/auth/signin/services/impl/signin.service'
 import {ClientModule} from '@modules/account/client/client.module'
 import {SigninController} from '@modules/account/auth/signin/controller/signin.controller'
 

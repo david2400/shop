@@ -16,7 +16,7 @@ import {UpdateResult} from 'typeorm'
 import {Supplier} from '@modules/inventory/supplier/entities/supplier.entity'
 import {CreateSupplierDto} from '@modules/inventory/supplier/dto/create-supplier.dto'
 import {UpdateSupplierDto} from '@modules/inventory/supplier/dto/update-supplier.dto'
-import {SupplierService} from '@modules/inventory/supplier/services/impl/supplier.service'
+import {SupplierService} from '@modules/inventory/supplier/services/supplier.service'
 
 @ApiTags('supplier')
 @Controller('supplier')

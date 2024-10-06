@@ -7,7 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {ProductOrder} from '@modules/sales/product-order/entities/product-order.entity'
 import {FavoriteProduct} from '@modules/userPreferences/favorite-product/entities/favorite-product.entity'
 import {Subcategory} from '@modules/catalog/subcategory/entities/subcategory.entity'
@@ -90,24 +90,48 @@ export class Product extends BaseEntity {
   })
   available: boolean
 
+  @Column({
+    type: 'int',
+    nullable: false,
+    unsigned: true,
+  })
+  brand_id: number
+
   @ManyToOne(() => Brand, (brand) => brand.product, {
     cascade: true,
     lazy: true,
+    persistence: false,
   })
   @JoinColumn([{name: 'brand_id', referencedColumnName: 'id'}])
   brand: Brand
+
+  @Column({
+    type: 'int',
+    nullable: false,
+    unsigned: true,
+  })
+  subcategory_id: number
 
   @ManyToOne(() => Subcategory, (subcategory) => subcategory.product, {
     cascade: true,
     lazy: true,
     eager: true,
+    persistence: false,
   })
   @JoinColumn([{name: 'subcategory_id', referencedColumnName: 'id'}])
   subcategory: Subcategory
 
+  @Column({
+    type: 'int',
+    nullable: false,
+    unsigned: true,
+  })
+  supplier_id: number
+
   @ManyToOne(() => Supplier, (supplier) => supplier.product, {
     cascade: true,
     lazy: true,
+    persistence: false,
   })
   @JoinColumn([{name: 'supplier_id', referencedColumnName: 'id'}])
   supplier: Supplier
@@ -115,7 +139,7 @@ export class Product extends BaseEntity {
   @OneToMany(() => ProductOrder, (productOrder) => productOrder.product, {
     lazy: true,
   })
-  ProductOrder: ProductOrder[]
+  product_order: ProductOrder[]
 
   @OneToMany(() => FavoriteProduct, (favorite) => favorite.product, {
     lazy: true,
@@ -130,11 +154,11 @@ export class Product extends BaseEntity {
   @OneToMany(() => ProductFeature, (productFeature) => productFeature.feature, {
     lazy: true,
   })
-  ProductFeature: ProductFeature[]
+  product_feature: ProductFeature[]
 
   @ManyToMany(() => Customization, (customization) => customization.customization_product, {
     lazy: true,
     eager: true,
   })
-  ProductCustomization: Customization[]
+  product_customization: Customization[]
 }

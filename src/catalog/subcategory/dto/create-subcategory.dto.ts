@@ -1,6 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger'
 import {IsNotEmpty, IsNumber, IsString} from 'class-validator'
-import {BaseDto} from '@common/class/dto/base.abstract.dto'
+import {BaseDto} from '@/common/class/base.abstract.dto'
 
 export class CreateSubcategoryDto extends BaseDto {
   @IsNotEmpty()
@@ -16,5 +16,5 @@ export class CreateSubcategoryDto extends BaseDto {
   @IsNumber()
   @IsNotEmpty()
   @ApiProperty()
-  CategoryId: number
+  category_id: number
 }

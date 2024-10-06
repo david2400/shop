@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger'
 import {DeepPartial} from 'typeorm'
 import {IsArray, IsNotEmpty, IsOptional, IsString} from 'class-validator'
-import {BaseDto} from '@common/class/dto/base.abstract.dto'
+import {BaseDto} from '@/common/class/base.abstract.dto'
 import {UnitProductDto} from '@modules/product-management/unit-product/dto/unit-product.dto'
 import {UnitProduct} from '@modules/product-management/unit-product/entities/unit-product.entity'
 

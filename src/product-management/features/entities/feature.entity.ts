@@ -1,5 +1,5 @@
 import {Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {UnitProduct} from '@modules/product-management/unit-product/entities/unit-product.entity'
 import {ProductFeature} from '@modules/product-management/product-features/entities/product-feature.entity'
 

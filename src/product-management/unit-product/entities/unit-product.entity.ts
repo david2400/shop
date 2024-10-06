@@ -10,7 +10,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 import {ProductFeature} from '@modules/product-management/product-features/entities/product-feature.entity'
 import {Feature} from '@modules/product-management/features/entities/feature.entity'
 

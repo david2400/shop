@@ -13,9 +13,9 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {CategoryService} from '@modules/catalog/category/services/impl/category.service'
 import {CreateCategoryDto} from '@modules/catalog/category/dto/create-category.dto'
 import {UpdateCategoryDto} from '@modules/catalog/category/dto/update-category.dto'
+import {CategoryService} from '../services/category.service'
 
 @ApiTags('category')
 @Controller('category')

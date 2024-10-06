@@ -15,7 +15,7 @@ import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
 import {CreateUnitProductDto} from '@modules/product-management/unit-product/dto/create-unit-product.dto'
 import {UpdateUnitProductDto} from '@modules/product-management/unit-product/dto/update-unit-product.dto'
-import {UnitProductService} from '@modules/product-management/unit-product/services/impl/unit-product.service'
+import {UnitProductService} from '@modules/product-management/unit-product/services/unit-product.service'
 
 @ApiTags('unitProduct')
 @Controller('unitProduct')

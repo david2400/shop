@@ -5,11 +5,6 @@ import {Product} from '@modules/inventory/product/entities/product.entity'
 
 export class CreateCustomizationDto {
   @IsNotEmpty()
-  @IsNumber()
-  @ApiProperty()
-  client_id: number
-
-  @IsNotEmpty()
   @IsDecimal()
   @ApiProperty()
   readonly subtotal: number
@@ -24,8 +19,13 @@ export class CreateCustomizationDto {
   @ApiProperty()
   readonly discount: number
 
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty()
+  client_id: number
+
   @IsOptional()
   @IsArray()
   @ApiProperty()
-  CustomizationProduct: DeepPartial<Product[]>
+  customization_product: DeepPartial<Product[]>
 }

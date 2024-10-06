@@ -14,7 +14,7 @@ import {
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 // import {MailerService} from '@nestjs-modules/mailer'
 import {UpdateResult} from 'typeorm'
-import {ClientService} from '@modules/account/client/services/impl/client.service'
+import {ClientService} from '@modules/account/client/services/client.service'
 import {CreateClientDto} from '@modules/account/client/dto/create-client.dto'
 import {UpdateClientDto} from '@modules/account/client/dto/update-client.dto'
 

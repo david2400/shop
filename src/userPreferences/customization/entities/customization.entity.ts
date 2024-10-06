@@ -7,7 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import {BaseEntity} from '@/common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@/common/class/base.abstract.entities'
 import {Product} from '@modules/inventory/product/entities/product.entity'
 import {Client} from '@modules/account/client/entities/client.entity'
 
@@ -34,14 +34,22 @@ export class Customization extends BaseEntity {
   })
   discount: number
 
+  @Column({
+    type: 'int',
+    nullable: false,
+    unsigned: true,
+  })
+  client_id: number
+
   @ManyToOne(() => Client, (client) => client.customization, {
     cascade: true,
     lazy: true,
+    persistence: false,
   })
   @JoinColumn([{name: 'client_id', referencedColumnName: 'id'}])
   client: Client
 
-  @ManyToMany(() => Product, (product) => product.ProductCustomization, {
+  @ManyToMany(() => Product, (product) => product.product_customization, {
     cascade: true,
     onUpdate: 'CASCADE',
     lazy: true,

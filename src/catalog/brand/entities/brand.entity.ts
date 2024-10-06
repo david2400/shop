@@ -1,6 +1,6 @@
 import {Product} from '@modules/inventory/product/entities/product.entity'
 import {PrimaryGeneratedColumn, Column, Entity, OneToMany} from 'typeorm'
-import {BaseEntity} from '@common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@common/class/base.abstract.entities'
 
 @Entity('brands')
 export class Brand extends BaseEntity {

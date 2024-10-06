@@ -1,6 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger'
 import {IsDecimal, IsInt, IsNotEmpty, IsNumber, IsOptional, ValidateNested} from 'class-validator'
-import {BaseDto} from '@common/class/dto/base.abstract.dto'
+import {BaseDto} from '@/common/class/base.abstract.dto'
 
 export class CreateProductOrderDto extends BaseDto {
   @IsNotEmpty()

@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 import {Combo} from '@modules/inventory/combos/entities/combo.entity'
-import {BaseAbstractRepository} from '@common/repository/base.abstract.repository'
+import {BaseAbstractRepository} from '@/common/class/base.abstract.repository'
 
 @Injectable()
 export class ComboRepository extends BaseAbstractRepository<Combo> {

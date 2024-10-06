@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import {ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger'
 import {UpdateResult} from 'typeorm'
-import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/impl/favorite-product.service'
+import {FavoriteProductService} from '@modules/userPreferences/favorite-product/services/favorite-product.service'
 import {CreateFavoriteProductDto} from '@modules/userPreferences/favorite-product/dto/create-favorite-product.dto'
 
 @ApiTags('favorite-product')

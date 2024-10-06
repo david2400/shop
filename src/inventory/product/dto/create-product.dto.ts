@@ -1,6 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger'
 import {IsBoolean, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, Min} from 'class-validator'
-import {BaseDto} from '@common/class/dto/base.abstract.dto'
+import {BaseDto} from '@/common/class/base.abstract.dto'
 
 export class CreateProductDto extends BaseDto {
   @IsString()

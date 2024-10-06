@@ -1,6 +1,6 @@
 import {Test, TestingModule} from '@nestjs/testing'
 import {CustomizationController} from '@modules/userPreferences/customization/controller/customization.controller'
-import {CustomizationService} from '@modules/userPreferences/customization/services/impl/customization.service'
+import {CustomizationService} from '@modules/userPreferences/customization/services/customization.service'
 
 describe('CustomizationController', () => {
   let controller: CustomizationController

@@ -1,5 +1,5 @@
 import {Column, PrimaryGeneratedColumn} from 'typeorm'
-import {BaseEntity} from '@/common/class/entities/base.abstract.entities'
+import {BaseEntity} from '@/common/class/base.abstract.entities'
 
 export class Plan extends BaseEntity {
   @PrimaryGeneratedColumn({type: 'int', unsigned: true, name: 'id'})
